@@ -1,14 +1,21 @@
 import {useState} from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {signIn} from "../store/slices/userSlice";
 
 export function SingIn() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
+  const dispatch = useDispatch()
+
   const singInHandler = (e) => {
     e.preventDefault();
     axios.post('https://kinopoisk.na4u.ru/api/auth', {name, password}, )
-      .then(r => console.log(r));
+      .then(r => {
+        localStorage.setItem('id', JSON.stringify(r.data.id));
+        dispatch(signIn(r.data.id))
+      });
   };
   return (
     <div className={'flex justify-center h-screen items-center'}>
