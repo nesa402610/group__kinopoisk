@@ -13,7 +13,7 @@ export function SingUp() {
     <div className={'flex justify-center h-screen items-center'}>
       <form action="" className={'flex flex-col bg-neutral-700 p-4 gap-4'}>
         <div className={'flex flex-col'}>
-          <span>Email</span>
+          <span>Name</span>
           <input type="text" className={'text-black px-2'} value={name} onChange={(e) => setName(e.target.value)}/>
         </div>
         <div className={'flex flex-col'}>
