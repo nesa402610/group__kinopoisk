@@ -23,5 +23,4 @@ export const api = new Kinopoisk({
   token,
 })
 
-
 // вот мой коммит, проверим работу  я просто коммент накинул
