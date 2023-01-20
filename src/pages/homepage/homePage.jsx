@@ -19,7 +19,6 @@ export function HomePage() {
     queryKey: [currentPageState],
     queryFn: () => Kinopoisk.fetchGetGilms(currentPageState + 1),
   })
-  if (isFetching) return 'Loading...'
   return (
 
     <div className="w-full container flex flex-col justify-center align-middle">
@@ -34,20 +33,11 @@ export function HomePage() {
         renderOnZeroPageCount={null}
         forcePage={currentPageState}
       />
-      <div className="flex justify-center mb-4 flex-wrap">
-        {data.films.map((film) => <HomepageCard name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
-      </div>
-
-      {/* <ReactPaginate
-        className="pagination"
-        breakLabel="..."
-        nextLabel="next"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={data.pagesCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      /> */}
+      {isFetching ? 'LOADING...' : (
+        <div className="flex justify-center mb-4 flex-wrap">
+          {data.films.map((film) => <HomepageCard name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
+        </div>
+      )}
 
     </div>
   )
