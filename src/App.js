@@ -1,8 +1,8 @@
-import {Outlet} from "react-router-dom";
-import {Header} from "./components/header";
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {signIn} from "./store/slices/userSlice";
+import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Header } from './components/header'
+import { signIn } from './store/slices/userSlice'
 
 export function App() {
   const dispatch = useDispatch()
@@ -11,11 +11,11 @@ export function App() {
     if (ls) {
       dispatch(signIn(ls))
     }
-  }, [dispatch]);
+  }, [dispatch])
   return (
     <>
-      <Header/>
-      <Outlet/>
+      <Header />
+      <Outlet />
     </>
-  );
+  )
 }
