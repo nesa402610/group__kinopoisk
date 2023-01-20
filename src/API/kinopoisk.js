@@ -5,8 +5,8 @@ export class Kinopoisk {
     this.user_id = data.user_id
   }
 
-  static async fetchGetGilms() {
-    const fetchFilms = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS', {
+  static async fetchGetGilms(page) {
+    const fetchFilms = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`, {
       method: 'GET',
       headers: {
         'X-API-KEY': 'a2810fed-e498-4fe2-a69a-b14b641fa617',
