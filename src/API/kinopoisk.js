@@ -4,11 +4,19 @@ class Kinopoisk {
     this.token = data.token
     this.user_id = data.user_id
   }
-
 }
-
 
 export const api = new Kinopoisk({
   user_id: localStorage.getItem('id'),
-  token: token
+  token,
+  async fetchGetGilms(page) {
+    const fetch = await fetch(`https://api.kinopoisk.dev/movie?token=${token}&page=${page}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const films = await fetch.json()
+    return films
+  },
 })
