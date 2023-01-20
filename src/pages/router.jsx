@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
-import { HomePage } from './homePage'
+import { HomePage } from './homepage/homePage'
 import { App } from '../App'
 import { SingIn } from './singIn'
 import { SingUp } from './singUp'
