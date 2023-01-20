@@ -1,6 +1,6 @@
 export function HomePage() {
   return (
-    <div>
+    <div className={'container'}>
       HOME PAGE
     </div>
   );
