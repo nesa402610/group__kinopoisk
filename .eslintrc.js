@@ -34,5 +34,6 @@ module.exports = {
     'no-unused-vars': 0,
     'max-len': 0,
     'no-param-reassign': 0,
+    'import/no-extraneous-dependencies': 0,
   },
-};
+}
