@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function HomepageCard({
+export function FilmCard({
   name, year, rating, img, id, genres,
 }) {
   const [likedState, setLikedState] = useState(false)
