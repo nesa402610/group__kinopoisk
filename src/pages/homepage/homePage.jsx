@@ -7,17 +7,17 @@ import { FilmsCarousel } from './filmsCarousel/FilmsCarousel'
 export function Homepage() {
   const bestFilmsQuery = useQuery({
     queryKey: ['1'],
-    queryFn: () => Kinopoisk.fetchGetGilmsTop(1, TOP_250_BEST_FILMS),
+    queryFn: () => Kinopoisk.fetchGetFilmsTop(1, TOP_250_BEST_FILMS),
   })
 
   const popularFilmsQuery = useQuery({
     queryKey: ['2'],
-    queryFn: () => Kinopoisk.fetchGetGilmsTop(1, TOP_100_POPULAR_FILMS),
+    queryFn: () => Kinopoisk.fetchGetFilmsTop(1, TOP_100_POPULAR_FILMS),
   })
 
   const awaitFilmsQuery = useQuery({
     queryKey: ['3'],
-    queryFn: () => Kinopoisk.fetchGetGilmsTop(1, TOP_AWAIT_FILMS),
+    queryFn: () => Kinopoisk.fetchGetFilmsTop(1, TOP_AWAIT_FILMS),
   })
 
   if (bestFilmsQuery.isFetching) {
