@@ -4,16 +4,29 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
-import { Kinopoisk, TOP_250_BEST_FILMS } from '../../API/kinopoisk'
+import { Kinopoisk } from '../../API/kinopoisk'
 import { FilmListContainer } from '../../components/filmListContainer/FilmListContainer'
 import { Loader } from '../../components/loader/Loader'
 import s from './catalog.css'
 
+function generateYears() {
+  const ar = []
+  for (let i = 2023; i >= 1890; i -= 1) {
+    ar.push(i)
+  }
+  return ar.map((e) => <option value={e}>{e}</option>)
+}
+
 export function Catalog() {
   const [currentPageState, setCurrentPageState] = useState(0)
   const [countPages, setCountPages] = useState(0)
-  const [sortBy, setSortBy] = useState('RATING')
-  const [country, setCountry] = useState('')
+  const [filters, setFilters] = useState({
+    sortBy: 'RATING',
+    country: '',
+    rating: 5,
+    minYear: '',
+    maxYear: '',
+  })
 
   const searchLine = useSelector((state) => state.films.search)
   const handlePageClick = (event) => {
@@ -21,8 +34,8 @@ export function Catalog() {
     setCurrentPageState(page)
   }
   const { data, isFetching } = useQuery({
-    queryKey: [currentPageState, searchLine, sortBy, country],
-    queryFn: () => Kinopoisk.fetchGetFilms(currentPageState + 1, sortBy, searchLine, country),
+    queryKey: [currentPageState, searchLine, filters],
+    queryFn: () => Kinopoisk.fetchGetFilms(currentPageState + 1, filters.sortBy, searchLine, filters.country, filters.rating, filters.minYear, filters.maxYear),
     onSuccess: () => console.log(data),
   })
   if (countPages === 0 && !isFetching) {
@@ -30,11 +43,23 @@ export function Catalog() {
   }
 
   const sortHandler = (e) => {
-    setSortBy(e.target.value)
+    setFilters({ ...filters, sortBy: e.target.value })
   }
 
   const countryHandler = (e) => {
-    setCountry(e.target.value)
+    setFilters({ ...filters, country: e.target.value })
+  }
+
+  const ratingHandler = (e) => {
+    setFilters({ ...filters, rating: e.target.value })
+  }
+
+  const maxYearHandler = (e) => {
+    setFilters({ ...filters, maxYear: e.target.value })
+  }
+
+  const minYearHandler = (e) => {
+    setFilters({ ...filters, minYear: e.target.value })
   }
 
   return (
@@ -44,7 +69,7 @@ export function Catalog() {
       <div className="flex justify-center gap-5">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Страна:
-          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={country} onChange={countryHandler}>
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={filters.country} onChange={countryHandler}>
             <option selected value="">Все</option>
             <option value={34}>Россия</option>
             <option value={33}>СССР</option>
@@ -71,8 +96,33 @@ export function Catalog() {
         </label>
 
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Год с:
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={filters.minYear} onChange={minYearHandler}>
+            <option selected value="">-</option>
+            {generateYears()}
+          </select>
+
+        </label>
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          по:
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={filters.maxYear} onChange={maxYearHandler}>
+            <option selected value="">-</option>
+            {generateYears()}
+          </select>
+
+        </label>
+
+        <label htmlFor="minmax-range" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Рейтинг от
+          {' '}
+          <b>{filters.rating}</b>
+          <input id="minmax-range" type="range" min="0" max="9" value={filters.rating} onChange={ratingHandler} className="range-lg w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 mt-3" />
+
+        </label>
+
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Сортировка по:
-          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={sortBy} onChange={sortHandler}>
+          <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={filters.sortBy} onChange={sortHandler}>
             <option selected value="RATING">Рейтингу</option>
             <option value="NUM_VOTE">Популярности</option>
             <option value="YEAR">Году</option>
@@ -82,22 +132,20 @@ export function Catalog() {
 
       </div>
 
+      {isFetching ? <Loader /> : (
+        <FilmListContainer films={data.items} />
+      )}
       <ReactPaginate
         className="pagination"
         breakLabel="..."
         nextLabel="вперед"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={countPages}
+        pageCount={countPages - 1}
         previousLabel="назад"
         renderOnZeroPageCount={null}
         forcePage={currentPageState}
       />
-
-      {isFetching ? <Loader /> : (
-        <FilmListContainer films={data.items} />
-      )}
-
     </div>
   )
 }
