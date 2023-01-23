@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { signIn } from '../store/slices/userSlice'
 
 export function SingIn() {
@@ -19,21 +20,23 @@ export function SingIn() {
   }
   return (
     <div className="flex justify-center h-screen items-center">
-      <form action="" className="flex flex-col bg-neutral-700 p-4 gap-4">
+      <form className="flex flex-col bg-neutral-700 p-4 gap-4 rounded-lg">
+        <h1 className="text-center text-lg">Авторизация</h1>
         <div className="flex flex-col">
-          <span>Name</span>
-          <input type="text" className="text-black px-2" value={name} onChange={(e) => setName(e.target.value)} />
+          <span>Имя аккаунта</span>
+          <input type="text" className="px-2 py-1 rounded-lg bg-neutral-800" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="flex flex-col">
           <span>Пароль</span>
           <input
             type="text"
-            className="text-black px-2"
+            className="px-2 py-1 rounded-lg bg-neutral-800"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button onClick={(e) => singInHandler(e)} className="bg-neutral-800 p-2" type="submit">
+        <Link to="/signUp" className="text-sm text-right mr-1">Создать аккаунт</Link>
+        <button onClick={(e) => singInHandler(e)} className="bg-neutral-800 p-2 rounded-full hover:bg-neutral-900" type="submit">
           Войти в аккаунт
         </button>
       </form>
