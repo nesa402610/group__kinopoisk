@@ -6,6 +6,7 @@ import { SingIn } from './singIn'
 import { SingUp } from './singUp'
 import { Homepage } from './homepage/homePage'
 import { AboutPage } from './about/aboutPage'
+import { ProfilePage } from './profile/profilePage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ export const router = createBrowserRouter(
       <Route path="signin" element={<SingIn />} />
       <Route path="signup" element={<SingUp />} />
       <Route path="about" element={<AboutPage />} />
+      <Route path="profile" element={<ProfilePage />} />
     </Route>,
   ),
 )

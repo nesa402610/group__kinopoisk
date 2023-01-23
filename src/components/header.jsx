@@ -32,11 +32,9 @@ export function Header() {
                 </>
               )
               : (
-                <div>
-                  Профиль
-                  {' '}
-                  {id}
-                </div>
+                <Link to="profile">
+                  {`Профиль ${id}`}
+                </Link>
               )}
           </div>
         </div>
