@@ -10,8 +10,8 @@ export class Kinopoisk {
     this.user_id = data.user_id
   }
 
-  static async fetchGetFilms(page, order = 'NUM_VOTE', keyword = '', country = '') {
-    const fetchFilms = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?page=${page}&order=${order}&keyword=${keyword}&countries=${country}`, {
+  static async fetchGetFilms(page, order, keyword, country, ratingFrom, yearFrom, yearTo) {
+    const fetchFilms = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?page=${page}&order=${order}&keyword=${keyword}&countries=${country}&ratingFrom=${ratingFrom}&yearFrom=${yearFrom}&yearTo=${yearTo}`, {
       method: 'GET',
       headers: {
         'X-API-KEY': token,
