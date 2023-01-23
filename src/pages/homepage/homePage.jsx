@@ -25,7 +25,6 @@ export function Homepage() {
   }
 
   return (
-
     <div className="w-full container flex flex-col justify-center gap-5 py-3">
       <h1 className="text-3xl text-center">Лучшие фильмы</h1>
       {bestFilmsQuery.isFetching ? 'LOADING' : <FilmsCarousel films={bestFilmsQuery.data.films} />}

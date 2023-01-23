@@ -4,9 +4,9 @@ import { App } from '../App'
 import { Catalog } from './catalog/Catalog'
 import { SingIn } from './singIn'
 import { SingUp } from './singUp'
-import { Homepage } from './homepage/homePage'
 import { AboutPage } from './about/aboutPage'
 import { ProfilePage } from './profile/profilePage'
+import { Homepage } from './homepage/Homepage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
