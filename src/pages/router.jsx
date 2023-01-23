@@ -2,9 +2,10 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 
 import { App } from '../App'
 import { Catalog } from './catalog/Catalog'
-import { Homepage } from './homepage/Homepage'
 import { SingIn } from './singIn'
 import { SingUp } from './singUp'
+import { Homepage } from './homepage/homePage'
+import { AboutPage } from './about/aboutPage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ export const router = createBrowserRouter(
       <Route path="films" element={<Catalog />} />
       <Route path="signin" element={<SingIn />} />
       <Route path="signup" element={<SingUp />} />
+      <Route path="about" element={<AboutPage />} />
     </Route>,
   ),
 )
