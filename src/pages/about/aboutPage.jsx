@@ -1,3 +1,6 @@
+import React from 'react'
+import { FramedBlock } from '../../components/framedBlock'
+
 export function AboutPage() {
   const authors = [
     {
@@ -22,7 +25,7 @@ export function AboutPage() {
               <div>
                 {author.info}
               </div>
-              <div className="bg-neutral-800 p-2 rounded-lg">
+              <FramedBlock title="Список задач">
                 <ul className="list-disc list-inside">
                   {author.checkList.map((item) => (
                     <li>
@@ -30,21 +33,24 @@ export function AboutPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </FramedBlock>
             </div>
           ))}
         </div>
       </div>
       <div>
         <h1 className="text-2xl font-bold text-center my-4">Информация о проекте</h1>
-        <div className="bg-neutral-700 p-4 rounded-lg">
-          <p>Дипломный проект, разрабатываемый в команде. </p>
-          <ul>
+        <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
+          <FramedBlock title="Описание проекта">
+            Дипломный проект, разрабатываемый в команде.
+          </FramedBlock>
+          <ul className="list-disc list-inside">
             <li>ReactJS</li>
             <li>Axios</li>
             <li>TailwindCSS</li>
             <li>ReactJS</li>
-            <li>ReactJS</li>
+            <li>TanStack Query</li>
+            <li>Redux ToolKit</li>
           </ul>
         </div>
       </div>
