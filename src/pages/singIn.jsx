@@ -1,27 +1,36 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signIn } from '../store/slices/userSlice'
 
 export function SingIn() {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
+  const [errors, setErrors] = useState('')
 
   const dispatch = useDispatch()
+  const nav = useNavigate()
 
   const singInHandler = (e) => {
     e.preventDefault()
     axios.post('https://kinopoisk.na4u.ru/api/auth', { name, password })
       .then((r) => {
-        localStorage.setItem('id', JSON.stringify(r.data.id))
-        dispatch(signIn(r.data.id))
+        if (r.data === 'INVALID LOGIN OR PASSWORD') {
+          setErrors('Неверные логин или пароль')
+        } else {
+          setErrors('')
+          localStorage.setItem('id', JSON.stringify(r.data.id))
+          dispatch(signIn(r.data.id))
+          nav('/')
+        }
       })
   }
   return (
     <div className="flex justify-center h-screen items-center">
-      <form className="flex flex-col bg-neutral-700 p-4 gap-4 rounded-lg">
+      <form className="flex flex-col min-w-[300px] bg-neutral-700 p-4 gap-4 rounded-lg">
         <h1 className="text-center text-lg">Авторизация</h1>
+        {errors && <span className="text-red-500">{errors}</span>}
         <div className="flex flex-col">
           <span>Имя аккаунта</span>
           <input type="text" className="px-2 py-1 rounded-lg bg-neutral-800" value={name} onChange={(e) => setName(e.target.value)} />
@@ -29,7 +38,7 @@ export function SingIn() {
         <div className="flex flex-col">
           <span>Пароль</span>
           <input
-            type="text"
+            type="password"
             className="px-2 py-1 rounded-lg bg-neutral-800"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
