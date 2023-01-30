@@ -21,7 +21,6 @@ export function App() {
       <div className="flex justify-center">
         <Outlet />
       </div>
-
     </QueryClientProvider>
   )
 }
