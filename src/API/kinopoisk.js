@@ -1,4 +1,5 @@
 // const token = 'a2810fed-e498-4fe2-a69a-b14b641fa617'
+
 const token = 'e3aadd4b-4f06-4190-90ea-05fb4c99f223'
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'
 export const TOP_100_POPULAR_FILMS = 'TOP_100_POPULAR_FILMS'
@@ -18,8 +19,7 @@ export class Kinopoisk {
         'Content-Type': 'application/json',
       },
     })
-    const films = await fetchFilms.json()
-    return films
+    return fetchFilms.json()
   }
 
   static async fetchGetFilmsTop(page, type) {
@@ -30,8 +30,18 @@ export class Kinopoisk {
         'Content-Type': 'application/json',
       },
     })
-    const films = await fetchFilms.json()
-    return films
+    return fetchFilms.json()
+  }
+
+  static async fetchFilmByID(id) {
+    const film = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': token,
+        'Content-Type': 'application/json',
+      },
+    })
+    return film.json()
   }
 }
 
