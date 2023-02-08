@@ -6,7 +6,7 @@ import { SingIn } from './singIn'
 import { SingUp } from './singUp'
 import { AboutPage } from './about/aboutPage'
 import { ProfilePage } from './profile/profilePage'
-import { Homepage } from './homepage/Homepage'
+import { Homepage } from './homepage/homePage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
