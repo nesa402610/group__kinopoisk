@@ -5,6 +5,7 @@ import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
 import { Kinopoisk } from '../../API/kinopoisk'
+import { kinopoiskApi, useGetFilmsQuery } from '../../API/kinopoiskAPI'
 import { FilmListContainer } from '../../components/filmListContainer/FilmListContainer'
 import { Loader } from '../../components/loader/Loader'
 import s from './catalog.css'
@@ -33,11 +34,17 @@ export function Catalog() {
     const page = event.selected
     setCurrentPageState(page)
   }
-  const { data, isFetching } = useQuery({
-    queryKey: [currentPageState, searchLine, filters],
-    queryFn: () => Kinopoisk.fetchGetFilms(currentPageState + 1, filters.sortBy, searchLine, filters.country, filters.rating, filters.minYear, filters.maxYear),
-    onSuccess: () => console.log(data),
+
+  const { data, isFetching } = useGetFilmsQuery({
+    page: currentPageState + 1,
+    order: filters.sortBy,
+    keyword: searchLine,
+    country: filters.country,
+    ratingFrom: filters.rating,
+    yearFrom: filters.minYear,
+    yearTo: filters.maxYear,
   })
+
   if (countPages === 0 && !isFetching) {
     setCountPages(data.totalPages + 1)
   }

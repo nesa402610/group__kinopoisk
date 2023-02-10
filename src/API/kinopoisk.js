@@ -18,7 +18,8 @@ export class Kinopoisk {
       },
     })
     const films = await fetchFilms.json()
-    return films
+    console.log(films)
+    return { data: films }
   }
 
   static async fetchGetFilmsTop(page, type) {

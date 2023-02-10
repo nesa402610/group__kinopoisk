@@ -7,8 +7,19 @@ export const kinopoiskApi = createApi({
     getTop250: (builder.query({
       queryFn: async ({ page, type }) => {
         try {
-          console.log()
           return Kinopoisk.fetchGetFilmsTop(page, type)
+        } catch (error) {
+          return { error: error.message }
+        }
+      },
+
+    })),
+    getFilms: (builder.query({
+      queryFn: async ({
+        page, order, keyword, country, ratingFrom, yearFrom, yearTo,
+      }) => {
+        try {
+          return Kinopoisk.fetchGetFilms(page, order, keyword, country, ratingFrom, yearFrom, yearTo)
         } catch (error) {
           return { error: error.message }
         }
@@ -17,3 +28,5 @@ export const kinopoiskApi = createApi({
     })),
   }),
 })
+
+export const { useGetTop250Query, useGetFilmsQuery } = kinopoiskApi
