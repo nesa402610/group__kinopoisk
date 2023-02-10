@@ -1,16 +1,10 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Kinopoisk } from '../../API/kinopoisk'
+import { useGetFilmByIdQuery } from '../../API/kinopoiskAPI'
 
 export function FilmDetailed() {
-  const [film, setFilm] = useState({})
+  const { data: film } = useGetFilmByIdQuery(1)
   const { ID } = useParams()
-  useEffect(() => {
-    Kinopoisk.fetchFilmByID(ID).then((r) => {
-      setFilm(r)
-      console.log(r)
-    })
-  }, [])
+  console.log(film)
   return (
     <div className="container">
       <div className="flex my-4 gap-4">
