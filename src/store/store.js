@@ -1,11 +1,13 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './slices/userSlice'
 import filmsSlice from './slices/filmsSlice'
+import { kinopoiskApi } from '../API/kinopoiskAPI'
 
-const rootReducer = combineReducers({
-  user: userSlice,
-  films: filmsSlice,
-})
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    kinopoiskApi: kinopoiskApi.reducer,
+    user: userSlice,
+    films: filmsSlice,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(kinopoiskApi.middleware),
 })
