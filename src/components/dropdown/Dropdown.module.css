@@ -5,6 +5,7 @@ ul {
    }
    li {
     padding: 8px 12px;
+    color: black;
    }
    
    li:hover {
@@ -13,17 +14,21 @@ ul {
    }
 
    .container {
-    position: relative;
+    /* position: relative;
     display: inline-block;
-    z-index: 1;
- }
- .button {
-    padding: 0;
-    width: 100px;
-    border: 0;
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-    outline: 0;
-    font-size: 20px;
+    z-index: 3; */
+    position: absolute;
+    top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+
+    left: 22.5%;
+    
+    text-align: center;
+    display: inline-block;
+    z-index: 3;
+    width: 60%;
+    background-color: aliceblue;
+    border-radius:10px
+
  }
