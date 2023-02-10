@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/no-extraneous-dependencies */
-import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
-import { Kinopoisk } from '../../API/kinopoisk'
-import { kinopoiskApi, useGetFilmsQuery } from '../../API/kinopoiskAPI'
+import { useGetFilmsQuery } from '../../API/kinopoiskAPI'
 import { FilmListContainer } from '../../components/filmListContainer/FilmListContainer'
 import { Loader } from '../../components/loader/Loader'
-import s from './catalog.css'
 
 function generateYears() {
   const ar = []
