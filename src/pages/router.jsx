@@ -1,13 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
 import { App } from '../App'
-import { Homepage } from './homepage/HomePage'
+import { Homepage } from './homepage/homePage'
 import { Catalog } from './catalog/Catalog'
 import { SingIn } from './singIn'
 import { SingUp } from './singUp'
 import { AboutPage } from './about/aboutPage'
 import { ProfilePage } from './profile/profilePage'
-import { Homepage } from './homepage/Homepage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

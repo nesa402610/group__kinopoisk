@@ -1,8 +1,12 @@
+import { useQuery } from '@tanstack/react-query'
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { NavLink, useSearchParams } from 'react-router-dom'
+import { Kinopoisk, TOP_100_POPULAR_FILMS } from '../../API/kinopoisk'
+import { kinopoiskApi } from '../../API/kinopoiskAPI'
 import { setSearch } from '../../store/slices/filmsSlice'
 import { useDebounce } from '../coustomHooks/useDebounse'
+import { Loader } from '../loader/Loader'
 
 import style from './Dropdown.module.css'
 
@@ -60,6 +64,9 @@ export default function Dropdown() {
   useEffect(() => {
     setSearchParams({ q: input })
   }, [input])
+  const PRODUCTS_QUERY_KEY = ['PRODUCTS_QUERY_KEY']
+
+  const getProductsQueryKey = () => PRODUCTS_QUERY_KEY.concat(Object.values(search))
 
   useEffect(() => {
     if (input) {
@@ -67,6 +74,16 @@ export default function Dropdown() {
       setdropdownStateWithNoInput({ open: false })
     }
   }, [input])
+
+  const { data: filmsSearchuning, isFetching } = useQuery({
+    queryKey: getProductsQueryKey,
+    queryFn: () => Kinopoisk.fetchGetActorByName(input, 1),
+    onSuccess: () => console.log(filmsSearchuning),
+  })
+
+  const {
+    data: popularFilms, isFetching: popularFilmsFetching,
+  } = kinopoiskApi.useGetTop250Query({ page: 1, type: TOP_100_POPULAR_FILMS })
 
   return (
     <div className=" flex-1" ref={container}>
@@ -80,23 +97,82 @@ export default function Dropdown() {
       />
       {dropdownStateWithInput.open && (
       <div className={style.container}>
-        <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-          <li>Item 4</li>
-        </ul>
+        {isFetching ? <Loader /> : (
+          <p className={style.title}>Возможно вы имели ввиду</p>
+        // //   filmsSearchuning.items.slice(0, 10).map((film) => (
+        // //     <div key={film.filmId} className={style.styles_mainLink}>
+
+        // //       <div className={style.styles_root}>
+
+        // //         <div className={style.styles_mainContainer}>
+        // //           <NavLink class={style.styles_mainLink} href=""><span /></NavLink>
+
+        // //           <div className={style.styles_imgContainer}>
+        // //             <img className={style.styles_img} alt={film.nameRu} src={film.posterUrlPreview} />
+        // //           </div>
+        // //           <div className={style.styles_info}>
+        // //             <h4 className={style.styles_4}>
+        // //               {film.nameRu}
+        // //               {' '}
+        // //             </h4>
+        // //             <div className={style.styles_subtitleLine}>
+        // //               <div className={style.styles_rating}>
+        // //                 <div className={style.styles_rootPositive}>{film.rating}</div>
+        // //               </div>
+        // //               <span className={style.styles_subtitle4}>
+        // //                 тут поменять,
+        // //                 {' '}
+        // //                 {film.year}
+        // //               </span>
+        // //             </div>
+        // //           </div>
+        // //         </div>
+        // //       </div>
+        // //     </div>
+        //   ))
+
+        )}
+
       </div>
       )}
 
       {dropdownStateWithNoInput.open && (
       <div className={style.container}>
-        <ul>
-          <li>12</li>
-          <li>23</li>
-          <li>34</li>
-          <li>56</li>
-        </ul>
+        <p className={style.title}>Входит в топ 10 за месяц</p>
+        {popularFilmsFetching ? <Loader /> : (
+          popularFilms.films.slice(0, 10).map((film) => (
+            <div key={film.filmId} className={style.styles_mainLink}>
+
+              <div className={style.styles_root}>
+
+                <div className={style.styles_mainContainer}>
+                  <NavLink class={style.styles_mainLink} href=""><span /></NavLink>
+
+                  <div className={style.styles_imgContainer}>
+                    <img className={style.styles_img} alt={film.nameRu} src={film.posterUrlPreview} />
+                  </div>
+                  <div className={style.styles_info}>
+                    <h4 className={style.styles_4}>
+                      {film.nameRu}
+                      {' '}
+                    </h4>
+                    <div className={style.styles_subtitleLine}>
+                      <div className={style.styles_rating}>
+                        <div className={style.styles_rootPositive}>{film.rating}</div>
+                      </div>
+                      <span className={style.styles_subtitle4}>
+                        тут поменять,
+                        {' '}
+                        {film.year}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+
+        )}
       </div>
       )}
     </div>

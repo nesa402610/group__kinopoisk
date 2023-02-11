@@ -21,6 +21,7 @@ const responsive = {
 }
 
 export function FilmsCarousel({ films }) {
+  console.log(films.slice(10))
   return (
     <div>
       <Carousel
