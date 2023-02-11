@@ -37,8 +37,6 @@ export default function Dropdown() {
   const handleDropdownClick = (e) => {
     if (e.target.value === '') {
       setdropdownStateWithNoInput({ open: true })
-    // } else if (dropdownStateWithNoInput.open === 'true' && e.target.value !== '') {
-    //   handleDropdownInput(e)
     } else {
       handleDropdownInput(e)
     }
@@ -63,6 +61,13 @@ export default function Dropdown() {
     setSearchParams({ q: input })
   }, [input])
 
+  useEffect(() => {
+    if (input) {
+      setdropdownStateWithInput({ open: true })
+      setdropdownStateWithNoInput({ open: false })
+    }
+  }, [input])
+
   return (
     <div className=" flex-1" ref={container}>
 
@@ -74,7 +79,6 @@ export default function Dropdown() {
         onClick={(e) => handleDropdownClick(e)}
       />
       {dropdownStateWithInput.open && (
-      //   <div className="absolute z-40 w-100 bg-white top-5% left-30 right-30 w-3/6">
       <div className={style.container}>
         <ul>
           <li>Item 1</li>
