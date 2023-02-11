@@ -1,8 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
 import {
-  Kinopoisk, TOP_100_POPULAR_FILMS, TOP_250_BEST_FILMS, TOP_AWAIT_FILMS,
-} from '../../API/kinopoisk'
-import { kinopoiskApi } from '../../API/kinopoiskAPI'
+  kinopoiskApi, TOP_100_POPULAR_FILMS, TOP_250_BEST_FILMS, TOP_AWAIT_FILMS,
+} from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 import { FilmsCarousel } from './filmsCarousel/FilmsCarousel'
 

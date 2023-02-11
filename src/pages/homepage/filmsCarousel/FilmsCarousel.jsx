@@ -29,7 +29,7 @@ export function FilmsCarousel({ films }) {
         autoPlay
         autoPlaySpeed={7000}
       >
-        {films.map((film) => <FilmCardSmall name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
+        {films.map((film) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
       </Carousel>
     </div>
   )
