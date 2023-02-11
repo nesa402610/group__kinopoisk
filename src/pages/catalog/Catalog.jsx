@@ -1,20 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/no-extraneous-dependencies */
-import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
-import { Kinopoisk } from '../../API/kinopoisk'
+import { kinopoiskApi } from '../../API/kinopoiskAPI'
 import { FilmListContainer } from '../../components/filmListContainer/FilmListContainer'
 import { Loader } from '../../components/loader/Loader'
-import s from './catalog.css'
+import './catalog.css'
 
 function generateYears() {
   const ar = []
   for (let i = 2023; i >= 1890; i -= 1) {
     ar.push(i)
   }
-  return ar.map((e) => <option value={e}>{e}</option>)
+  return ar.map((e) => <option key={e} value={e}>{e}</option>)
 }
 
 export function Catalog() {
@@ -33,13 +32,13 @@ export function Catalog() {
     const page = event.selected
     setCurrentPageState(page)
   }
-  const { data, isFetching } = useQuery({
-    queryKey: [currentPageState, searchLine, filters],
-    queryFn: () => Kinopoisk.fetchGetFilms(currentPageState + 1, filters.sortBy, searchLine, filters.country, filters.rating, filters.minYear, filters.maxYear),
-    onSuccess: () => console.log(data),
+
+  const { data: films, isFetching: filmsFetching } = kinopoiskApi.useGetFilmsWithFiltersQuery({
+    page: currentPageState + 1, order: filters.sortBy, keyword: searchLine, country: filters.country, ratingFrom: filters.rating, yearFrom: filters.minYear, yearTo: filters.maxYear,
   })
-  if (countPages === 0 && !isFetching) {
-    setCountPages(data.totalPages + 1)
+
+  if (countPages === 0 && !filmsFetching) {
+    setCountPages(films.totalPages + 1)
   }
 
   const sortHandler = (e) => {
@@ -132,8 +131,8 @@ export function Catalog() {
 
       </div>
 
-      {isFetching ? <Loader /> : (
-        <FilmListContainer films={data.items} />
+      {filmsFetching ? <Loader /> : (
+        <FilmListContainer films={films.items} />
       )}
       <ReactPaginate
         className="pagination"
