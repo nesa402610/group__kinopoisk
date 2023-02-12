@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
 import { App } from '../App'
-import { Homepage } from './homepage/HomePage'
+import { Homepage } from './homepage/homePage'
 import { Catalog } from './catalog/Catalog'
 import { SingIn } from './SingIn'
 import { SingUp } from './SingUp'
