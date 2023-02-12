@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import YouTube from 'react-youtube'
 import { useGetFilmByIdQuery } from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 
@@ -40,6 +41,7 @@ export function FilmDetailed() {
           </div>
         </div>
       </div>
+
     </div>
   )
 }

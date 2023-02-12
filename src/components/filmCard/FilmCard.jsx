@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import s from './filmCard.module.scss'
 
 export function FilmCard({
@@ -6,7 +7,7 @@ export function FilmCard({
 }) {
   const [likedState, setLikedState] = useState(false)
   return (
-    <div className={`max-w-sm rounded-xl overflow-hidden shadow-lg bg-black m-2 cursor-pointer relative ${s.card}`} style={({ width: '300px', height: '400px' })}>
+    <Link to={`/film/${id}`} className={`max-w-sm rounded-xl overflow-hidden shadow-lg bg-black m-2 cursor-pointer relative ${s.card}`} style={({ width: '300px', height: '400px' })}>
       <img className="w-full" src={img} alt="Sunset in the mountains" />
       <div className={`px-6 py-4 absolute w-full bottom-0 left-0 bg-black ${s.cardText}`}>
         <div className="font-bold text-xl mb-2">{name}</div>
@@ -40,6 +41,6 @@ export function FilmCard({
         <i className={`${likedState ? 'fa-solid' : 'fa-regular'} fa-heart`} />
       </button>
       <div className={`${s.rating} ${rating > 8 ? s.gold : s.gray}`}>{rating}</div>
-    </div>
+    </Link>
   )
 }

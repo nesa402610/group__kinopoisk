@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import s from './filmCardSmall.module.scss'
 
 export function FilmCardSmall({
   name, year, rating, img, id, genres,
 }) {
   return (
-    <Link to={`/film/${id}`} className="max-w-sm rounded-xl overflow-hidden shadow-lg bg-black m-2 cursor-pointer relative h-72">
+    <Link to={`/film/${id}`} className={s.container}>
       <img className="w-full" src={img} alt="" />
       <div className="absolute bottom-0 text-white text-base w-full bg-black bg-opacity-80 text-sm p-2">
         {/* <div className="font-bold text-xl mb-2">{name}</div> */}
@@ -19,12 +20,8 @@ export function FilmCardSmall({
           {' '}
           {year}
         </p>
-        <p>
-          Рейтинг:
-          {' '}
-          {rating}
-        </p>
       </div>
+      <div className={`${s.rating} ${rating > 8 ? s.gold : s.gray}`}>{rating}</div>
     </Link>
   )
 }
