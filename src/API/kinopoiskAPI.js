@@ -26,6 +26,9 @@ export const kinopoiskApi = createApi({
     getFilmById: (builder.query({
       query: (id) => `${id}`,
     })),
+    getFilmVideos: (builder.query({
+      query: (id) => `${id}/videos`,
+    })),
   }),
 })
-export const { useGetFilmByIdQuery } = kinopoiskApi
+export const { useGetFilmByIdQuery, useGetFilmVideosQuery } = kinopoiskApi
