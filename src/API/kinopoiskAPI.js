@@ -23,5 +23,9 @@ export const kinopoiskApi = createApi({
         page, order, keyword, country, ratingFrom, yearFrom, yearTo,
       }) => `?page=${page}&order=${order}&keyword=${keyword}&countries=${country}&ratingFrom=${ratingFrom}&yearFrom=${yearFrom}&yearTo=${yearTo}`,
     })),
+    getFilmById: (builder.query({
+      query: (id) => `${id}`,
+    })),
   }),
 })
+export const { useGetFilmByIdQuery } = kinopoiskApi
