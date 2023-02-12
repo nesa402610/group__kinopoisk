@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSearch } from '../store/slices/filmsSlice'
 
 export function Header() {
-  const { isAuth, id } = useSelector((state) => state.user)
+  const { isAuth, name } = useSelector((state) => state.user)
   const { search } = useSelector((state) => state.films)
   const dispatch = useDispatch()
   return (
@@ -33,7 +33,7 @@ export function Header() {
               )
               : (
                 <Link to="profile">
-                  {`Профиль ${id}`}
+                  {`Профиль ${name}`}
                 </Link>
               )}
           </div>

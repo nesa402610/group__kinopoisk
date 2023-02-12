@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom'
-import { useEffect } from 'react'
 import { Provider, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import { Header } from './components/header'
-import { signIn } from './store/slices/userSlice'
 import { store } from './store/store'
+import { signIn } from './store/slices/userSlice'
 
 export function App() {
   const dispatch = useDispatch()
   useEffect(() => {
-    const ls = localStorage.getItem('id')
+    const ls = JSON.parse(localStorage.getItem('user'))
     if (ls) {
-      dispatch(signIn(ls))
+      dispatch(signIn(ls.name))
     }
   }, [dispatch])
   return (

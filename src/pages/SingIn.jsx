@@ -20,8 +20,8 @@ export function SingIn() {
           setErrors('Неверные логин или пароль')
         } else {
           setErrors('')
-          localStorage.setItem('id', JSON.stringify(r.data.id))
-          dispatch(signIn(r.data.id))
+          dispatch(signIn(r.data.name))
+          localStorage.setItem('user', JSON.stringify({ token: r.data.token, name: r.data.name }))
           nav('/')
         }
       })
