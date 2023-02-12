@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom'
-import { useGetFilmQuery } from '../../API/kinopoiskAPI'
+import { useGetFilmByIdQuery } from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 
 export function FilmDetailed() {
   const { ID } = useParams()
-  const { data: film, error, isLoading } = useGetFilmQuery(ID)
-  console.log(film)
+  const { data: film, error, isLoading } = useGetFilmByIdQuery(ID)
   if (isLoading) return <Loader />
   return (
     <div className="container">
