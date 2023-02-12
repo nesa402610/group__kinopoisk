@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom'
-import { useGetFilmByIdQuery } from '../../API/kinopoiskAPI'
+import { useGetFilmQuery } from '../../API/kinopoiskAPI'
+import { Loader } from '../../components/loader/Loader'
 
 export function FilmDetailed() {
-  const { data: film } = useGetFilmByIdQuery(1)
   const { ID } = useParams()
+  const { data: film, error, isLoading } = useGetFilmQuery(ID)
   console.log(film)
+  if (isLoading) return <Loader />
   return (
     <div className="container">
       <div className="flex my-4 gap-4">
         <div className="flex basis-1/3 rounded-lg overflow-hidden">
-          <img src={film.coverUrl} alt="обложка фильма" />
+          <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма" />
         </div>
         <div className="flex flex-col flex-1 bg-neutral-700 p-4 rounded-lg">
           <div className="flex flex-col">
