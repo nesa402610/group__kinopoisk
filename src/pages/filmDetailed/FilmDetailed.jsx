@@ -6,6 +6,7 @@ export function FilmDetailed() {
   const { ID } = useParams()
   const { data: film, error, isLoading } = useGetFilmByIdQuery(ID)
   if (isLoading) return <Loader />
+  if (error) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container">
       <div className="flex my-4 gap-4">
@@ -13,7 +14,7 @@ export function FilmDetailed() {
           <span className={`absolute p-2 text-2xl font-bold${film.ratingKinopoisk > 7 ? ' text-green-500' : ' text-orange-500'}`}>{film.ratingKinopoisk}</span>
           <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма" />
         </div>
-        <div className="flex flex-col flex-1 bg-neutral-700 p-4 rounded-lg">
+        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg">
           <div className="flex flex-col">
             <div className="flex gap-1 items-baseline">
               <h1 className="text-2xl font-bold">
@@ -21,7 +22,7 @@ export function FilmDetailed() {
               </h1>
               <span className="text-neutral-300">
                 (
-                {film.year}
+                {`${film.year} | ${film.filmLength} мин`}
                 )
               </span>
             </div>
@@ -35,8 +36,14 @@ export function FilmDetailed() {
             <h3 className="text-lg font-bold">Описание</h3>
             <p>{film.description}</p>
           </div>
-          <div className="mt-8 font-bold">
-            <a href={film.webUrl} target="_blank" rel="noreferrer" className="hover:text-neutral-400 transition-all">Подробнее на кинопоске</a>
+          <div>
+            <h3 className="text-lg font-bold">Жанры</h3>
+            <div className="flex gap-1">
+              {film.genres.map((genre) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
+            </div>
+          </div>
+          <div className="font-bold">
+            <a href={film.webUrl} target="_blank" rel="noreferrer" className="italic hover:text-neutral-400 transition-all">Подробнее на кинопоске</a>
           </div>
         </div>
       </div>
