@@ -10,7 +10,8 @@ export function FilmDetailed() {
   return (
     <div className="container">
       <div className="flex my-4 gap-4">
-        <div className="flex basis-1/3 rounded-lg overflow-hidden">
+        <div className="flex basis-1/3 rounded-lg overflow-hidden relative">
+          <span className={`absolute p-2 text-2xl font-bold${film.ratingKinopoisk > 7 ? ' text-green-500' : ' text-orange-500'}`}>{film.ratingKinopoisk}</span>
           <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма" />
         </div>
         <div className="flex flex-col flex-1 bg-neutral-700 p-4 rounded-lg">
@@ -34,6 +35,9 @@ export function FilmDetailed() {
           <div>
             <h3 className="text-lg font-bold">Описание</h3>
             <p>{film.description}</p>
+          </div>
+          <div className="mt-8 font-bold">
+            <a href={film.webUrl} target="_blank" rel="noreferrer" className="hover:text-neutral-400 transition-all">Подробнее на кинопоске</a>
           </div>
         </div>
       </div>
