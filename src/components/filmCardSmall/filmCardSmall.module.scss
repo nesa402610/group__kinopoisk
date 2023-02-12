@@ -1,0 +1,43 @@
+.container{
+    display: block;
+    max-width: 24rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background: black;
+    margin: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    height: 18rem;
+    transition: all .25s;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.767);
+        .cardText{
+            opacity: 1;
+        }
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.301);
+    }
+}
+
+.rating{
+    color:rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+    z-index: 5;
+    position: absolute;
+    border-radius: 0.75rem 0;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px;
+    line-height: 1;
+}
+
+.gold{
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); 
+    color:rgb(255, 255, 255)
+}
+
+.gray{
+    background-color: #bdbdbd;
+}

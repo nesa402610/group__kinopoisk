@@ -77,6 +77,7 @@ export function FilmDetailed() {
           ))}
         </div>
       </div>
+
     </div>
   )
 }
