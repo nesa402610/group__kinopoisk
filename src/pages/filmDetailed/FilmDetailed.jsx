@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useGetFilmByIdQuery, useGetFilmVideosQuery } from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 import { ShortInfo } from '../../components/filmDetailed/ShortInfo'
+import { FilmTrailers } from '../../components/filmTrailers/FilmTrailers'
 
 export function FilmDetailed() {
   const { ID } = useParams()
@@ -33,49 +34,55 @@ export function FilmDetailed() {
           </div>
           <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма" />
         </div>
-        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg">
-          <div className="flex flex-col">
-            <div className="flex gap-1 items-baseline">
-              <h1 className="text-2xl font-bold">
-                {film.nameRu}
-              </h1>
+        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg max-w-5xl">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
+              <div className="flex gap-1 items-baseline">
+                <h1 className="text-2xl font-bold">
+                  {film.nameRu}
+                </h1>
+              </div>
+              <div className="flex gap-1 text-sm text-neutral-400">
+                <h2 className="">{film.nameOriginal}</h2>
+                {film.nameOriginal && film.slogan ? '|' : ''}
+                <h3 className="italic">{film.slogan}</h3>
+              </div>
             </div>
-            <div className="flex gap-1 text-sm text-neutral-400">
-              <h2 className="">{film.nameOriginal}</h2>
-              {film.nameOriginal && film.slogan ? '|' : ''}
-              <h3 className="italic">{film.slogan}</h3>
+            <div>
+              <h3 className="text-lg font-bold">Описание</h3>
+              <p>{film.description}</p>
             </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Описание</h3>
-            <p>{film.description}</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Жанры</h3>
-            <div className="flex gap-1">
-              {film.genres.map((genre) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
+            <div>
+              <h3 className="text-lg font-bold">Жанры</h3>
+              <div className="flex gap-1">
+                {film.genres.map((genre) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
+              </div>
             </div>
-          </div>
-          <div className="font-bold">
-            <a
-              href={film.webUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="italic hover:text-neutral-400 transition-all"
-            >
-              Подробнее на кинопоске
-            </a>
+            <div className="font-bold">
+              <a
+                href={film.webUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="italic hover:text-neutral-400 transition-all"
+              >
+                Подробнее на кинопоске
+              </a>
+            </div>
           </div>
         </div>
+
         {/* Тестовый кусок, стоит переписать TODO */}
-        <div>
+        {/* <div>
           {videos.items.map((video) => (
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <video height="300px" width="300px" controls="controls">
               <source src={video.url} />
             </video>
           ))}
-        </div>
+        </div> */}
+      </div>
+      <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
+        <FilmTrailers videos={videos.items} />
       </div>
 
     </div>
