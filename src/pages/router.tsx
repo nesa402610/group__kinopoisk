@@ -8,6 +8,7 @@ import { SingUp } from './SingUp'
 import { AboutPage } from './about/AboutPage'
 import { ProfilePage } from './profile/ProfilePage'
 import { FilmDetailed } from './filmDetailed/FilmDetailed'
+import React from 'react'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

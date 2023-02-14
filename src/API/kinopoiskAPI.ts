@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'

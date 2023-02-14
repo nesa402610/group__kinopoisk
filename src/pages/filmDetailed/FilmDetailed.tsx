@@ -3,6 +3,7 @@ import { useGetFilmByIdQuery, useGetFilmVideosQuery } from '../../API/kinopoiskA
 import { Loader } from '../../components/loader/Loader'
 import { ShortInfo } from '../../components/filmDetailed/ShortInfo'
 import { FilmTrailers } from '../../components/filmTrailers/FilmTrailers'
+import React from 'react'
 
 export function FilmDetailed() {
   const { ID } = useParams()
@@ -58,7 +59,7 @@ export function FilmDetailed() {
             <div>
               <h3 className="text-lg font-bold">Жанры</h3>
               <div className="flex gap-1">
-                {film.genres.map((genre) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
+                {film.genres.map((genre: any) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
               </div>
             </div>
             <div className="font-bold">

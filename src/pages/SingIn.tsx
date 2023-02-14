@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { MouseEvent, useState} from 'react'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { signIn } from '../store/slices/userSlice'
+import {useDispatch} from 'react-redux'
+import {Link, useNavigate} from 'react-router-dom'
+import {signIn} from '../store/slices/userSlice'
+import React from 'react'
 
 export function SingIn() {
   const [password, setPassword] = useState<string>('')
@@ -12,7 +13,7 @@ export function SingIn() {
   const dispatch = useDispatch()
   const nav = useNavigate()
 
-  const singInHandler = (e) => {
+  const singInHandler = (e: any) => {
     e.preventDefault()
     axios.post('https://kinopoisk.na4u.ru/api/auth', { name, password })
       .then((r) => {

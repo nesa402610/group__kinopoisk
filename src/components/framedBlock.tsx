@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function FramedBlock({ title, children }) {
+export function FramedBlock({ title, children }: any) {
   return (
     <div className="bg-neutral-800 rounded-lg">
       <div className="bg-neutral-900 py-2 px-4 rounded-t-lg">

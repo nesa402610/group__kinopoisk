@@ -4,10 +4,12 @@ import { useEffect } from 'react'
 import { Header } from './components/header'
 import { store } from './store/store'
 import { signIn } from './store/slices/userSlice'
+import React from 'react'
 
 export function App() {
   const dispatch = useDispatch()
   useEffect(() => {
+    // @ts-ignore
     const ls = JSON.parse(localStorage.getItem('user'))
     if (ls) {
       dispatch(signIn(ls.name))

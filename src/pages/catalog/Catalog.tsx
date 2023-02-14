@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
@@ -27,8 +26,9 @@ export function Catalog() {
     maxYear: '',
   })
 
+  // @ts-ignore
   const searchLine = useSelector((state) => state.films.search)
-  const handlePageClick = (event) => {
+  const handlePageClick = (event: { selected: any }) => {
     const page = event.selected
     setCurrentPageState(page)
   }
@@ -41,23 +41,23 @@ export function Catalog() {
     setCountPages(films.totalPages + 1)
   }
 
-  const sortHandler = (e) => {
+  const sortHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, sortBy: e.target.value })
   }
 
-  const countryHandler = (e) => {
+  const countryHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, country: e.target.value })
   }
 
-  const ratingHandler = (e) => {
+  const ratingHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, rating: e.target.value })
   }
 
-  const maxYearHandler = (e) => {
+  const maxYearHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, maxYear: e.target.value })
   }
 
-  const minYearHandler = (e) => {
+  const minYearHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, minYear: e.target.value })
   }
 
@@ -142,7 +142,6 @@ export function Catalog() {
         pageRangeDisplayed={5}
         pageCount={countPages - 1}
         previousLabel="назад"
-        renderOnZeroPageCount={null}
         forcePage={currentPageState}
       />
     </div>

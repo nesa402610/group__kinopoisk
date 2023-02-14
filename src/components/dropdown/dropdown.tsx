@@ -6,17 +6,22 @@ import {
   kinopoiskApi, TOP_100_POPULAR_FILMS,
 } from '../../API/kinopoiskAPI'
 import { setSearch } from '../../store/slices/filmsSlice'
+// @ts-ignore
 import { useDebounce } from '../coustomHooks/useDebounse'
 import { Loader } from '../loader/Loader'
 
+// @ts-ignore
 import style from './Dropdown.module.css'
 import { DropDownNoInpyt } from './DropDownNoInpyt/DropDownNoInpyt'
+// @ts-ignore
 import { DropDownWithInputActors } from './DropDownWithInputActors/DropDownWithInputActors'
+// @ts-ignore
 import { DropDownWithInputFilms } from './DropDownWithInputFilms/DropDownWithInputFilms'
 
 export default function Dropdown() {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  // @ts-ignore
   const { search } = useSelector((state) => state.films)
   const dispatch = useDispatch()
   const container = useRef()
@@ -36,20 +41,23 @@ export default function Dropdown() {
     })
   }, [input])
 
-  const handleDropdownInput = (e) => {
+  const handleDropdownInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearch(e.target.value))
     setdropdownStateWithInput({ open: true })
     setInput(e.target.value)
   }
 
-  const handleDropdownClick = (e) => {
+  const handleDropdownClick = (e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    // @ts-ignore
     if (e.target.value === '') {
       setdropdownStateWithNoInput({ open: true })
     } else {
+      // @ts-ignore
       handleDropdownInput(e)
     }
   }
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: { target: any }) => {
+    // @ts-ignore
     if (container.current && !container.current.contains(e.target)) {
       setdropdownStateWithInput({ open: false })
       setdropdownStateWithNoInput({ open: false })
@@ -89,7 +97,7 @@ export default function Dropdown() {
   } = kinopoiskApi.useGetActorsByNameQuery({ page: 1, name: input })
 
   return (
-    <div className=" flex-1" ref={container}>
+    <div className=" flex-1">
 
       <input
         type="text"

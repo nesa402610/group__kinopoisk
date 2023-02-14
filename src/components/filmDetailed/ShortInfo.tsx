@@ -1,4 +1,6 @@
-export function ShortInfo({ title, children }) {
+import React from "react";
+
+export function ShortInfo({ title, children }: any) {
   return (
     <div className="flex flex-col items-center">
       {children}

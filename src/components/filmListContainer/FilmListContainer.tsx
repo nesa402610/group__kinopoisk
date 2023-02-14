@@ -1,9 +1,10 @@
+import React from 'react'
 import { FilmCard } from '../filmCard/FilmCard'
 
-export function FilmListContainer({ films }) {
+export function FilmListContainer({ films }: any) {
   return (
     <div className="flex justify-center mb-4 flex-wrap">
-      {films.map((film) => (
+      {films.map((film: any) => (
         <FilmCard
           key={film.kinopoiskId}
           name={film.nameRu}

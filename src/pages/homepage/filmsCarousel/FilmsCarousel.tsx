@@ -1,6 +1,7 @@
 import Carousel from 'react-multi-carousel'
 import { FilmCardSmall } from '../../../components/filmCardSmall/FilmCardSmall'
 import 'react-multi-carousel/lib/styles.css'
+import React from 'react'
 
 const responsive = {
   desktop: {
@@ -20,7 +21,7 @@ const responsive = {
   },
 }
 
-export function FilmsCarousel({ films }) {
+export function FilmsCarousel({ films }: any) {
   console.log(films.slice(10))
   return (
     <div>
@@ -30,7 +31,7 @@ export function FilmsCarousel({ films }) {
         autoPlay
         autoPlaySpeed={7000}
       >
-        {films.map((film) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
+        {films.map((film: any) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
       </Carousel>
     </div>
   )
