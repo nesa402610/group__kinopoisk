@@ -13,7 +13,10 @@ export function FilmDetailed() {
   return (
     <div className="container">
       <div className="flex my-4 gap-4 items-start">
-        <div className="flex basis-1/3 rounded-lg overflow-hidden relative">
+        <div
+          className="flex basis-1/3 justify-center rounded-lg overflow-hidden relative"
+          style={{ backgroundColor: '#eeeeee' }}
+        >
           <div className="absolute py-1 px-4 justify-between text-2xl font-bold flex gap-2 bg-neutral-800/80 w-full">
             <ShortInfo title="КП">
               <span className={`${film.ratingKinopoisk > 7 ? ' text-green-500' : ' text-orange-500'}`}>
@@ -81,9 +84,11 @@ export function FilmDetailed() {
           ))}
         </div> */}
       </div>
+      {videos.items.length !== 0 && (
       <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
         <FilmTrailers videos={videos.items} />
       </div>
+      )}
 
     </div>
   )
