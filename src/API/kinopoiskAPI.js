@@ -32,10 +32,10 @@ export const kinopoiskApi = createApi({
       query: ({ page, name }) => `v1/persons?page=${page}&name=${name}`,
     })),
     getFilmById: (builder.query({
-      query: (id) => `/v2.2/films${id}`,
+      query: (id) => `/v2.2/films/${id}`,
     })),
     getFilmVideos: (builder.query({
-      query: (id) => `/v2.2/films${id}/videos`,
+      query: (id) => `/v2.2/films/${id}/videos`,
     })),
   }),
 })
