@@ -5,9 +5,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { signIn } from '../store/slices/userSlice'
 
 export function SingIn() {
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [errors, setErrors] = useState('')
+  const [password, setPassword] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [errors, setErrors] = useState<string>('')
 
   const dispatch = useDispatch()
   const nav = useNavigate()
@@ -33,7 +33,12 @@ export function SingIn() {
         {errors && <span className="text-red-500">{errors}</span>}
         <div className="flex flex-col">
           <span>Имя аккаунта</span>
-          <input type="text" className="px-2 py-1 rounded-lg bg-neutral-800" value={name} onChange={(e) => setName(e.target.value)} />
+          <input
+            type="text"
+            className="px-2 py-1 rounded-lg bg-neutral-800"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div className="flex flex-col">
           <span>Пароль</span>
@@ -45,7 +50,11 @@ export function SingIn() {
           />
         </div>
         <Link to="/signUp" className="text-sm text-right mr-1">Создать аккаунт</Link>
-        <button onClick={(e) => singInHandler(e)} className="bg-neutral-800 p-2 rounded-full hover:bg-neutral-900" type="submit">
+        <button
+          onClick={(e) => singInHandler(e)}
+          className="bg-neutral-800 p-2 rounded-full hover:bg-neutral-900"
+          type="submit"
+        >
           Войти в аккаунт
         </button>
       </form>

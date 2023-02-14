@@ -6,15 +6,17 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'eslint:recommended', 'plugin:@typescript-eslint/recommended',
   ],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  parser: '@typescript-eslint/parser',
   plugins: [
     'react',
+    '@typescript-eslint',
   ],
   rules: {
     semi: ['error', 'never'],
