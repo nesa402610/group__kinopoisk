@@ -4,7 +4,7 @@ import { setSearch } from '../store/slices/filmsSlice'
 import Dropdown from './dropdown/dropdown'
 
 export function Header() {
-  const { isAuth, id } = useSelector((state) => state.user)
+  const { isAuth, name } = useSelector((state) => state.user)
   const { search } = useSelector((state) => state.films)
   const dispatch = useDispatch()
   const location = useLocation()
@@ -40,7 +40,7 @@ export function Header() {
               )
               : (
                 <Link to="profile">
-                  {`Профиль ${id}`}
+                  {`Профиль ${name}`}
                 </Link>
               )}
           </div>

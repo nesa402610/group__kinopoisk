@@ -1,5 +1,6 @@
 .card{
     transition: all .25s;
+    display: block;
     &:hover{
         background-color: rgba(0, 0, 0, 0.767);
         .cardText{

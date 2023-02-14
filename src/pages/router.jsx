@@ -1,12 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
 import { App } from '../App'
-import { Homepage } from './homepage/homePage'
+import { Homepage } from './homepage/HomePage'
 import { Catalog } from './catalog/Catalog'
-import { SingIn } from './singIn'
-import { SingUp } from './singUp'
-import { AboutPage } from './about/aboutPage'
-import { ProfilePage } from './profile/profilePage'
+import { SingIn } from './SingIn'
+import { SingUp } from './SingUp'
+import { AboutPage } from './about/AboutPage'
+import { ProfilePage } from './profile/ProfilePage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +17,7 @@ export const router = createBrowserRouter(
       <Route path="signup" element={<SingUp />} />
       <Route path="about" element={<AboutPage />} />
       <Route path="profile" element={<ProfilePage />} />
+      {/* <Route path="film/:ID" element={<FilmDetailed />} /> */}
     </Route>,
   ),
 )
