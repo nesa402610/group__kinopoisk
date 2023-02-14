@@ -7,7 +7,6 @@ import { SingIn } from './SingIn'
 import { SingUp } from './SingUp'
 import { AboutPage } from './about/AboutPage'
 import { ProfilePage } from './profile/ProfilePage'
-import { FilmDetailed } from './filmDetailed/FilmDetailed'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +17,7 @@ export const router = createBrowserRouter(
       <Route path="signup" element={<SingUp />} />
       <Route path="about" element={<AboutPage />} />
       <Route path="profile" element={<ProfilePage />} />
-      <Route path="film/:ID" element={<FilmDetailed />} />
+      {/* <Route path="film/:ID" element={<FilmDetailed />} /> */}
     </Route>,
   ),
 )

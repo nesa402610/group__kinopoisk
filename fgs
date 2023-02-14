@@ -1,0 +1,472 @@
+[33mcommit 9491349c0420bdcedbfab9aa9aa7e4cdcf5a9808[m[33m ([m[1;36mHEAD -> [m[1;32mfeatureActorSearch[m[33m)[m
+Author: andrey-glazkov-frontend <dr-greenfake@yandex.ru>
+Date:   Sat Feb 11 15:08:31 2023 +0300
+
+    pulling dev
+
+[33mcommit 32b0f718d4a25dbc8941bad880fbbb2a86dabbca[m[33m ([m[1;31morigin/featureActorSearch[m[33m)[m
+Author: andrey-glazkov-frontend <dr-greenfake@yandex.ru>
+Date:   Fri Feb 10 20:19:00 2023 +0300
+
+    adde newest functioonal of dropdown
+
+[33mcommit 62b77c28a86f74f106ff585f0c8a05e1109036a5[m
+Author: andrey-glazkov-frontend <dr-greenfake@yandex.ru>
+Date:   Thu Feb 9 01:55:04 2023 +0300
+
+    adde base functioonal of dropdown
+
+[33mcommit 0c0c7c42d824ee0b80578732efd062d252bfe12a[m
+Author: andrey-glazkov-frontend <dr-greenfake@yandex.ru>
+Date:   Wed Feb 8 22:00:37 2023 +0300
+
+    start dev
+
+[33mcommit e028e3922d38b99ef6a7472808cfd57a02f7c30a[m[33m ([m[1;31morigin/nesa402610[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m, [m[1;32mfeature/actorSearch[m[33m, [m[1;32mfeaturAactorSearch[m[33m)[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 30 14:31:52 2023 +0300
+
+    Переиспользуемость
+
+[33mcommit 8b9465c52ccffb17fd529e28883a4c3d13d88992[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 30 14:31:36 2023 +0300
+
+    Декомпозиция, красоты навел
+
+[33mcommit 7953b88228dc5519f16caae54b0947853c81f42b[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 30 13:53:43 2023 +0300
+
+    Убрал лишний пробел
+
+[33mcommit d1ea1d70287094aec3e64ff4892872419a469079[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 30 13:53:23 2023 +0300
+
+    Немного фиксов визуала, попытка обработки ошибок, редиректы
+
+[33mcommit a293dd018875778dea2cd2abdccfc1fb3064c3ff[m
+Merge: c6bcbc8 3721ca7
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 16:51:17 2023 +0300
+
+    Merge pull request #12 from nesa402610/techniquei
+    
+    fix
+
+[33mcommit 3721ca78d6d3b9586883518e935001770bb8b2e6[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 16:50:22 2023 +0300
+
+    fix
+
+[33mcommit c6bcbc884ff458d197881693fcba4961ae6cac27[m
+Merge: 27b3a8a 07be506
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 16:42:59 2023 +0300
+
+    Merge pull request #11 from nesa402610/techniquei
+    
+    Доработал карточки
+
+[33mcommit 07be5063f4c00f05a49440ea9e6349017fcd1103[m
+Merge: 22c9284 27b3a8a
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 16:40:56 2023 +0300
+
+    Merge remote-tracking branch 'origin/master' into techniquei
+
+[33mcommit 22c92840623197e0ed1ae0cefb6f1b42479e4ed2[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 16:40:38 2023 +0300
+
+    Доработал карточки
+
+[33mcommit 27b3a8ae0258790fc1def01c353aaf2ef51c527d[m
+Merge: e2e0d5b 2c82829
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 16:04:25 2023 +0300
+
+    Merge branch 'master' into nesa402610
+
+[33mcommit e2e0d5bb0d174389b1a968e4608a95b3a10e93a2[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 16:02:04 2023 +0300
+
+    Примерный вид страницы набросал
+
+[33mcommit a1d107b300df4ccdae38a16b363164fe576ce61f[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 16:01:15 2023 +0300
+
+    API для запросов на наш сервер
+
+[33mcommit 50f30908755a26e662ff1e60e51310856c930c52[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:59:10 2023 +0300
+
+    Страница профиля
+
+[33mcommit 2632d316275cb871a390a5c08386e0d9e4ce2baa[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:58:59 2023 +0300
+
+    Обновил внешний вид
+
+[33mcommit 2c82829439eda1c02e1850dabc658e0aa98a3e06[m
+Merge: 19e73fc 5f2340b
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 15:58:42 2023 +0300
+
+    Merge pull request #10 from nesa402610/techniquei
+    
+    Добавил фильтры
+
+[33mcommit 5f2340b0da88b690ee5e19df97b1115add607add[m
+Merge: ab21ceb 19e73fc
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 15:57:57 2023 +0300
+
+    Merge remote-tracking branch 'origin/master' into techniquei
+
+[33mcommit ab21ceb2cffb2d70010d7a2f26f239aec1444ae5[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 15:57:45 2023 +0300
+
+    Добавил фильтры в каталоге
+
+[33mcommit 45fb77025f3b98dd7862994c0de7057ba8b5e61c[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:15:40 2023 +0300
+
+    Страница about
+
+[33mcommit b3b39703bdef128cc2d0bae5ccdf066c6f221486[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:15:30 2023 +0300
+
+    Небольшой редизайн поиска
+
+[33mcommit 1c7dbfe2e7b70b3aebba5af1873b7edf910d8599[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:15:16 2023 +0300
+
+    Добавил станицу about
+
+[33mcommit 1b90e09c790a1f3c9f98eaa36d37ccce48ad130d[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 23 15:14:56 2023 +0300
+
+    форматирование кода
+
+[33mcommit 19e73fc0aa29203ea9f3e699a3a7df4973d5d520[m
+Merge: a573d67 b4b9b63
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 03:13:29 2023 +0300
+
+    Merge pull request #9 from nesa402610/techniquei
+    
+    В каталоге добавил выбор сортировки, страны. Добавил лоадер, вывел фи…
+
+[33mcommit b4b9b63c4212d22f0d33f6e13f61988638629c04[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Mon Jan 23 03:12:37 2023 +0300
+
+    В каталоге добавил выбор сортировки, страны. Добавил лоадер, вывел фильмы в компонент
+
+[33mcommit a573d6765aee6ea094ff30a212776fff0074b7ff[m
+Merge: 7c6137c 7fd3072
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Sun Jan 22 18:14:05 2023 +0300
+
+    Merge pull request #8 from nesa402610/techniquei
+    
+    Добавил карусели на главную, создал мини карточки
+
+[33mcommit 7fd30721ca47868b40940b754284f6e052740618[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Sun Jan 22 18:13:08 2023 +0300
+
+    Добавил карусели на главную, создал мини карточки
+
+[33mcommit 7c6137cb063c438746417b603ce8646a72db1376[m
+Merge: 6e3fe8c fec7c99
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:52:32 2023 +0300
+
+    Merge pull request #7 from nesa402610/techniquei
+    
+    Techniquei
+
+[33mcommit fec7c99131ddb320d8eb36fbdf3d73efd07afd09[m
+Merge: 6bc8d17 6e3fe8c
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:51:32 2023 +0300
+
+    Merge remote-tracking branch 'origin/master' into techniquei
+
+[33mcommit 6bc8d17abc076739cfb4d5bcd52e980966f02308[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:51:06 2023 +0300
+
+    fix
+
+[33mcommit 6e3fe8c264bbfb210b2d5dddcb2afd0d4e4dd4d0[m
+Merge: 3f42f79 135a1d2
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:43:55 2023 +0300
+
+    Merge pull request #6 from nesa402610/techniquei
+    
+    fix
+
+[33mcommit 135a1d2fa76a384a675209f1f9b8cea945c07685[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:42:26 2023 +0300
+
+    fix
+
+[33mcommit 3f42f79bcf9268ff36b22879c93072a299cd634d[m
+Merge: 48d8b7f 1d8f7d7
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:29:48 2023 +0300
+
+    Merge pull request #5 from nesa402610/techniquei
+    
+    Techniquei
+
+[33mcommit 1d8f7d718ce09e9ed0198f8a11e717bb0ef82528[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 16:26:18 2023 +0300
+
+    Сделал пагинацию на главной
+
+[33mcommit 282c54f038506a3b8fe38c3559d3a9a759246588[m
+Merge: 92524f9 c3eaff3
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 14:15:20 2023 +0300
+
+    Merge remote-tracking branch 'origin/master' into techniquei
+
+[33mcommit 92524f93b3f40f2d0a0b737b81d13806bbe5ce1d[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 14:13:38 2023 +0300
+
+    добавил карточки фильмов на главную
+
+[33mcommit de21f4787dbea0b6d8dea207e8e2ca95e21df09d[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 13:16:03 2023 +0300
+
+    перенес метод в класс
+
+[33mcommit 48d8b7f3756b32fc8b2348cee7c9e7d19df3439b[m
+Merge: ac5d89b c3eaff3
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 13:03:51 2023 +0300
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit c3eaff35cb9ef25cfceed6c6b59ec1ea12c39d4e[m
+Merge: 1fe51c4 b240e24
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 13:02:01 2023 +0300
+
+    Merge pull request #4 from nesa402610/techniquei
+    
+    исправил fetchFilms
+
+[33mcommit b240e243726d0ac77b789233dc9ed6754dec5c4d[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 13:01:23 2023 +0300
+
+    исправил fetchFilms
+
+[33mcommit ac5d89b3b5c23d89607908c8b5e7cf41e36a7a71[m
+Merge: 629b606 1fe51c4
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 12:59:57 2023 +0300
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       src/API/kinopoisk.js
+
+[33mcommit 1fe51c4417e1ba5d47359f1bce6adf9f3029c41f[m
+Merge: a2f681c 7cc716c
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 12:57:07 2023 +0300
+
+    Merge pull request #3 from nesa402610/techniquei
+    
+    Techniquei
+
+[33mcommit 7cc716cb09b238f43d3630df8ee7138e4308257b[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 12:55:45 2023 +0300
+
+    еще раз
+
+[33mcommit 0941b344ed578dd8d5e4ffdc39491932510e38b8[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 12:52:59 2023 +0300
+
+    добавил запрос фильмов
+
+[33mcommit 629b6069c32d616c729fb13c6cfceb5aa842f903[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 12:46:10 2023 +0300
+
+    тест мержей
+
+[33mcommit a2f681c5ef3292531c1f1d5819700680d2753199[m
+Merge: 04e6272 ccb79d0
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 12:41:04 2023 +0300
+
+    Merge pull request #2 from nesa402610/techniquei
+    
+    Добавил eslint
+
+[33mcommit ccb79d06139a9181b598a37ee7840b488514e458[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Fri Jan 20 12:36:08 2023 +0300
+
+    Добавил eslint
+
+[33mcommit 04e6272a31bc0d6f0d00804b6b4fcdf01f1c2ac1[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 11:05:02 2023 +0300
+
+    обернул в контейнер, чтобы ограничить ширину
+
+[33mcommit 9ef8b4b84ff7dd10acd8bc7b76d2adadf94d4039[m
+Merge: 268f5aa b3f4590
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 10:54:46 2023 +0300
+
+    Merge remote-tracking branch 'origin/nesa402610' into nesa402610
+
+[33mcommit 268f5aadb60804a98c79aa31bfd84073c507e777[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 10:54:01 2023 +0300
+
+    Добавлен поиск
+
+[33mcommit 433c2828316feb51f9ceebb94b111a0d54774c86[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 10:53:56 2023 +0300
+
+    Добавлено поле для поиска
+
+[33mcommit b3f45903e577ac857a2b9965d868124a57dcf896[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 10:54:01 2023 +0300
+
+    Добавлен поиск
+
+[33mcommit 591f5abc12a6f40cd14e829a1899f10bb3f99384[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Fri Jan 20 10:53:56 2023 +0300
+
+    Добавлено поле для поиска
+
+[33mcommit b802ff1de5550edb9760431eba8fdf4facb3929d[m
+Merge: fc024d2 145fd70
+Author: nesa402610 <66470801+nesa402610@users.noreply.github.com>
+Date:   Thu Jan 19 22:57:10 2023 +0300
+
+    Merge pull request #1 from nesa402610/techniquei
+    
+    тест ветки
+
+[33mcommit 145fd70d3e84c1ff3feaf574462800091e54b670[m
+Author: Techniquei <66029763+Techniquei@users.noreply.github.com>
+Date:   Thu Jan 19 22:54:44 2023 +0300
+
+    тест ветки
+
+[33mcommit fc024d23b49e7fb9cc1bb52c5b57ac4318ace69d[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 22:47:20 2023 +0300
+
+    Логин готов
+
+[33mcommit a1758fc943d63336d98ddf03811ea21aa2e7d5e8[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 22:47:08 2023 +0300
+
+    Добавлены роуты и базовый вид
+
+[33mcommit 5d113331979e9254b748795b965d649860b7e06e[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 17:05:45 2023 +0300
+
+    Создан класс для запросов и взаимодействия с API
+
+[33mcommit 20b5bf3dd6a066458c95506457e2814b4eeb4956[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 15:15:58 2023 +0300
+
+    Оборачиваем в провайдер редакса
+
+[33mcommit e9dc91425ba919031d90d33723de1e1130315795[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 15:14:55 2023 +0300
+
+    Создан полноценный стор редакса
+
+[33mcommit a952486992227cdc8f31f42b4407547b91d96c0d[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 15:14:43 2023 +0300
+
+    Создан слайс пользователя
+
+[33mcommit 4ec4a52fa70f6586a650686c50b557506d6cd836[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 15:14:28 2023 +0300
+
+    Создан слайс фильмов
+
+[33mcommit 62246dfe97a9ac7e619986baa550012cd6b2b791[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 15:14:12 2023 +0300
+
+    Проверяем наличие данных в ЛС
+
+[33mcommit 0aabce1d058cb9057c9ed9bd986845a092792037[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 14:35:47 2023 +0300
+
+    Замена email => name
+
+[33mcommit 2f14dc03a0783a33b5f5ecb37fc8da2996eb5398[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 14:03:17 2023 +0300
+
+    Ссылки в хедере
+
+[33mcommit 7a2d99b00fb59e423860799bd7c5392472f230df[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Thu Jan 19 14:03:03 2023 +0300
+
+    Вход и регистрация
+
+[33mcommit 24c7a41b4828ac0feed494cc4246b6ad8cb9d229[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Tue Jan 17 14:36:04 2023 +0300
+
+    База роутинга, редукса сделана
+
+[33mcommit 35f044f68117f05ebe78e03864ee7064bf23f799[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 16 14:52:52 2023 +0300
+
+    Добавлены зависимости axios, RTK, router, tailwind. Удалено лишнее
+
+[33mcommit d8b3c133e21aa0d0a3f7f969dbf834a2463d2a9f[m
+Author: nesa402610 <argyleferris@gmail.com>
+Date:   Mon Jan 16 14:22:11 2023 +0300
+
+    Initialize project using Create React App
