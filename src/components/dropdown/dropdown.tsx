@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import {
-  AWAIT_FILMS_BY_NAME,
   kinopoiskApi, TOP_100_POPULAR_FILMS,
 } from '../../API/kinopoiskAPI'
 import { setSearch } from '../../store/slices/filmsSlice'
-// @ts-ignore
+import { RootState, useAppDispatch } from '../../store/store'
 import { useDebounce } from '../coustomHooks/useDebounse'
 import { Loader } from '../loader/Loader'
 
@@ -21,9 +20,8 @@ import { DropDownWithInputFilms } from './DropDownWithInputFilms/DropDownWithInp
 export default function Dropdown() {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  // @ts-ignore
-  const { search } = useSelector((state) => state.films)
-  const dispatch = useDispatch()
+  const { search } = useSelector((state : RootState) => state.films)
+  const dispatch = useAppDispatch()
   const container = useRef()
   const [dropdownStateWithInput, setdropdownStateWithInput] = useState({ open: false })
   const [dropdownStateWithNoInput, setdropdownStateWithNoInput] = useState({ open: false })
@@ -85,15 +83,15 @@ export default function Dropdown() {
   }, [input])
 
   const {
-    data: popularFilms, isFetching: popularFilmsFetching,
+    data: popularFilms, isFetching: popularFilmsFetching, isSuccess: popularFilmsSuccess
   } = kinopoiskApi.useGetTop250Query({ page: 1, type: TOP_100_POPULAR_FILMS })
 
   const {
-    data: films, isFetching: filmsFetching,
-  } = kinopoiskApi.useGetFilmByNameQuery({ page: 1, keyword: input })
+    data: films, isFetching: filmsFetching, isSuccess: filmsSuccess
+  } = kinopoiskApi.useGetFilmsWithFiltersQuery({ page: 1, keyword: input })
 
   const {
-    data: actors, isFetching: actorsFetching,
+    data: actors, isFetching: actorsFetching, isSuccess: actorsSuccess
   } = kinopoiskApi.useGetActorsByNameQuery({ page: 1, name: input })
 
   return (
@@ -109,7 +107,7 @@ export default function Dropdown() {
       {dropdownStateWithInput.open && (
       <div className={style.container}>
         <p className={style.title}>Возможно вы искали</p>
-        {filmsFetching ? <Loader /> : <DropDownWithInputFilms films={films.items} /> }
+        {(filmsFetching || !filmsSuccess) ? <Loader /> : <DropDownWithInputFilms films={films.items} /> }
         {actorsFetching ? <Loader /> : <DropDownWithInputActors actors={actors.items} /> }
       </div>
       )}
@@ -117,7 +115,7 @@ export default function Dropdown() {
       {dropdownStateWithNoInput.open && (
       <div className={style.container}>
         <p className={style.title}>Входит в топ 10 за месяц</p>
-        {popularFilmsFetching ? <Loader /> : <DropDownNoInpyt films={popularFilms.films} />}
+        {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <DropDownNoInpyt films={popularFilms.films} />}
       </div>
       )}
     </div>

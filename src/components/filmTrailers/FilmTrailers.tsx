@@ -2,8 +2,7 @@ import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
-export function FilmTrailers({ videos }: any) {
-  console.log(videos)
+export function filterVideos(videos:any){
   const ids = videos.filter((e: { site: string }) => e.site === 'YOUTUBE').map((e: { url: string }) => {
     // eslint-disable-next-line no-useless-escape
     const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
@@ -11,7 +10,10 @@ export function FilmTrailers({ videos }: any) {
     // @ts-ignore
     return { ...e, id: match[2] }
   })
-  console.log(ids)
+  return ids
+}
+
+export function FilmTrailers({ ids }: any) {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 0 },

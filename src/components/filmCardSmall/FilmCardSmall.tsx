@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import s from './filmCardSmall.module.scss'
 
 export function FilmCardSmall({
-  name, year, rating, img, id, genres,
-}: any) {
+  name, year, rating, img, id
+}: {name: string, year:number, rating:number, img: string,   id: number}) {
   return (
     <Link to={`/film/${id}`} className={s.container}>
       <img className="w-full" src={img} alt="" />

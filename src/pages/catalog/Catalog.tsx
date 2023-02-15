@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
+
 import { useSelector } from 'react-redux'
 import { kinopoiskApi } from '../../API/kinopoiskAPI'
 import { FilmListContainer } from '../../components/filmListContainer/FilmListContainer'
 import { Loader } from '../../components/loader/Loader'
+import { RootState } from '../../store/store'
 import './catalog.css'
 
 function generateYears() {
@@ -26,18 +28,19 @@ export function Catalog() {
     maxYear: '',
   })
 
-  // @ts-ignore
-  const searchLine = useSelector((state) => state.films.search)
-  const handlePageClick = (event: { selected: any }) => {
+  const searchLine = useSelector((state : RootState ) => state.films.search)
+
+  const handlePageClick = (event: { selected: number }) => {
     const page = event.selected
+    console.log(page)
     setCurrentPageState(page)
   }
 
-  const { data: films, isFetching: filmsFetching } = kinopoiskApi.useGetFilmsWithFiltersQuery({
+  const { data: films, isFetching: filmsFetching, isSuccess } = kinopoiskApi.useGetFilmsWithFiltersQuery({
     page: currentPageState + 1, order: filters.sortBy, keyword: searchLine, country: filters.country, ratingFrom: filters.rating, yearFrom: filters.minYear, yearTo: filters.maxYear,
   })
 
-  if (countPages === 0 && !filmsFetching) {
+  if (countPages === 0 && isSuccess && films.totalPages) {
     setCountPages(films.totalPages + 1)
   }
 
@@ -60,6 +63,7 @@ export function Catalog() {
   const minYearHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, minYear: e.target.value })
   }
+  if(isSuccess) console.log(films)
 
   return (
 
@@ -105,7 +109,7 @@ export function Catalog() {
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           по:
           <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={filters.maxYear} onChange={maxYearHandler}>
-            <option selected value="">-</option>
+            <option selected value="3000">-</option>
             {generateYears()}
           </select>
 
@@ -131,7 +135,7 @@ export function Catalog() {
 
       </div>
 
-      {filmsFetching ? <Loader /> : (
+      {(!isSuccess || filmsFetching)  ? <Loader /> : (
         <FilmListContainer films={films.items} />
       )}
       <ReactPaginate

@@ -6,7 +6,7 @@ import s from './filmCard.module.scss'
 
 export function FilmCard({
   name, year, rating, img, id, genres,
-}:any) {
+}:{name: string, year: number, rating: number, img: string, id: number, genres: Array<{genre:string}>}) {
   const [likedState, setLikedState] = useState(false)
   return (
     <Link to={`/film/${id}`} className={`max-w-sm rounded-xl overflow-hidden shadow-lg bg-black m-2 cursor-pointer relative ${s.card}`} style={({ width: '300px', height: '400px' })}>
@@ -29,7 +29,7 @@ export function FilmCard({
           {rating}
         </p>
         <div>
-          {genres.map((genre: any) => <span key={genre.genre} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{genre.genre}</span>)}
+          {genres.map((genre) => <span key={genre.genre} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{genre.genre}</span>)}
         </div>
       </div>
 

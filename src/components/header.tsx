@@ -1,15 +1,14 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { setSearch } from '../store/slices/filmsSlice'
 import Dropdown from './dropdown/dropdown'
 import React from 'react'
+import { RootState, useAppDispatch } from '../store/store'
 
 export function Header() {
-  // @ts-ignore
-  const { isAuth, name } = useSelector((state) => state.user)
-  // @ts-ignore
-  const { search } = useSelector((state) => state.films)
-  const dispatch = useDispatch()
+  const { isAuth, name } = useSelector((state : RootState) => state.user)
+  const { search } = useSelector((state : RootState) => state.films)
+  const dispatch = useAppDispatch()
   const location = useLocation()
   console.log({ location })
   return (

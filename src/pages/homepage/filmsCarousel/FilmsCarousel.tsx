@@ -22,7 +22,6 @@ const responsive = {
 }
 
 export function FilmsCarousel({ films }: any) {
-  console.log(films.slice(10))
   return (
     <div>
       <Carousel
@@ -31,7 +30,7 @@ export function FilmsCarousel({ films }: any) {
         autoPlay
         autoPlaySpeed={7000}
       >
-        {films.map((film: any) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} genres={film.genres} />)}
+        {films.map((film: any) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} />)}
       </Carousel>
     </div>
   )

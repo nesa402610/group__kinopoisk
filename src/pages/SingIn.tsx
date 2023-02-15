@@ -1,16 +1,16 @@
 import { MouseEvent, useState} from 'react'
 import axios from 'axios'
-import {useDispatch} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import {signIn} from '../store/slices/userSlice'
 import React from 'react'
+import { useAppDispatch } from '../store/store'
 
 export function SingIn() {
   const [password, setPassword] = useState<string>('')
   const [name, setName] = useState<string>('')
   const [errors, setErrors] = useState<string>('')
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const nav = useNavigate()
 
   const singInHandler = (e: any) => {
