@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom'
 import { useGetFilmByIdQuery, useGetFilmVideosQuery } from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 import { ShortInfo } from '../../components/filmDetailed/ShortInfo'
-import { FilmTrailers } from '../../components/filmTrailers/FilmTrailers'
+import { FilmTrailers, filterVideos } from '../../components/filmTrailers/FilmTrailers'
 import React from 'react'
 
 export function FilmDetailed() {
   const { ID } = useParams()
-  const { data: film, error: filmErr, isLoading: filmLoad } = useGetFilmByIdQuery(ID)
-  const { data: videos, error: videosErr, isLoading: videoLoad } = useGetFilmVideosQuery(ID)
-  if (filmLoad || !videos) return <Loader />
+  const { data: film, error: filmErr, isLoading: filmLoad } = useGetFilmByIdQuery(Number(ID))
+  const { data: videos, isLoading: videoLoad } = useGetFilmVideosQuery(Number(ID))
+  if (filmLoad) return <Loader />
   if (filmErr) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container">
@@ -85,11 +85,13 @@ export function FilmDetailed() {
           ))}
         </div> */}
       </div>
-      {videos.items.length !== 0 && (
+      
+      
+      {videoLoad ? <Loader/> : (filterVideos(videos.items).length > 0 ? 
       <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
-        <FilmTrailers videos={videos.items} />
-      </div>
-      )}
+        <FilmTrailers ids={filterVideos(videos.items)} />
+      </div> 
+      : '')}
 
     </div>
   )
