@@ -22,7 +22,7 @@ export default function Dropdown() {
 
   const { search } = useSelector((state : RootState) => state.films)
   const dispatch = useAppDispatch()
-  const container = useRef()
+  const container = useRef<HTMLDivElement>(null)
   const [dropdownStateWithInput, setdropdownStateWithInput] = useState({ open: false })
   const [dropdownStateWithNoInput, setdropdownStateWithNoInput] = useState({ open: false })
   const [input, setInput] = useState(() => searchParams.get('q') ?? '')
@@ -40,26 +40,34 @@ export default function Dropdown() {
   }, [input])
 
   const handleDropdownInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('handleDropdownInput')
     dispatch(setSearch(e.target.value))
     setdropdownStateWithInput({ open: true })
     setInput(e.target.value)
   }
 
-  const handleDropdownClick = (e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    // @ts-ignore
-    if (e.target.value === '') {
+  const handleDropdownClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    console.log('handleDropdownClick')
+    const target = e.target  as HTMLButtonElement
+    if(target){
+      if (target.value === '') {
       setdropdownStateWithNoInput({ open: true })
     } else {
-      // @ts-ignore
-      handleDropdownInput(e)
+      // handleDropdownInput(e)
     }
+    }
+    
   }
-  const handleClickOutside = (e: { target: any }) => {
-    // @ts-ignore
-    if (container.current && !container.current.contains(e.target)) {
+  const handleClickOutside = (e: React.MouseEvent<MouseEvent>) : void => {
+    if(e.target){
+      console.log(e.target)
+      console.log(container)
+      if (container.current && !container.current.contains(e.target as Node)) {
       setdropdownStateWithInput({ open: false })
       setdropdownStateWithNoInput({ open: false })
+      }
     }
+    
   }
 
   useEffect(() => {
@@ -95,7 +103,7 @@ export default function Dropdown() {
   } = kinopoiskApi.useGetActorsByNameQuery({ page: 1, name: input })
 
   return (
-    <div className=" flex-1">
+    <div className=" flex-1" ref={container}>
 
       <input
         type="text"
