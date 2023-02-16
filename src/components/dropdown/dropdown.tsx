@@ -22,22 +22,23 @@ export default function Dropdown() {
 
   const { search } = useSelector((state : RootState) => state.films)
   const dispatch = useAppDispatch()
-  const container = useRef()
+  const container = useRef<HTMLDivElement>(null)
   const [dropdownStateWithInput, setdropdownStateWithInput] = useState({ open: false })
   const [dropdownStateWithNoInput, setdropdownStateWithNoInput] = useState({ open: false })
   const [input, setInput] = useState(() => searchParams.get('q') ?? '')
   const debounceValue = useDebounce(input, 350)
 
+
   useEffect(() => {
     setSearchParams({ q: input })
-  }, [input])
+  }, [input, setSearchParams])
 
   useEffect(() => {
     setSearchParams({
       ...Object.fromEntries(searchParams.entries()),
       search: input,
     })
-  }, [input])
+  }, [input, searchParams, setSearchParams])
 
   const handleDropdownInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearch(e.target.value))
@@ -54,26 +55,41 @@ export default function Dropdown() {
       handleDropdownInput(e)
     }
   }
-  const handleClickOutside = (e: { target: any }) => {
-    // @ts-ignore
-    if (container.current && !container.current.contains(e.target)) {
+  const handleClickOutside = (event: any) => {
+    const target = event.target as HTMLDivElement
+    | HTMLInputElement
+    | HTMLParagraphElement
+    | HTMLButtonElement
+    | HTMLHeadingElement;
+    // if (target?.contains(container.current) && target !== container.current)
+    
+    if (!container.current?.contains(event.target))
+    {
       setdropdownStateWithInput({ open: false })
       setdropdownStateWithNoInput({ open: false })
     }
+
+    console.log('woks')
+
+    console.log(event.target)
+    console.log(container.current)
+
+
   }
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
+    console.log('woks useeffect')
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [search])
+  }, [])
 
   useEffect(() => {
     dispatch(setSearch((debounceValue)))
-  }, [debounceValue])
+  }, [debounceValue, dispatch])
 
   useEffect(() => {
     setSearchParams({ q: input })
-  }, [input])
+  }, [input, setSearchParams])
 
   useEffect(() => {
     if (input) {
@@ -81,6 +97,8 @@ export default function Dropdown() {
       setdropdownStateWithNoInput({ open: false })
     }
   }, [input])
+
+
 
   const {
     data: popularFilms, isFetching: popularFilmsFetching, isSuccess: popularFilmsSuccess
@@ -105,15 +123,15 @@ export default function Dropdown() {
         onClick={(e) => handleDropdownClick(e)}
       />
       {dropdownStateWithInput.open && (
-      <div className={style.container}>
+      <div className={style.container} ref={container}>
         <p className={style.title}>Возможно вы искали</p>
         {(filmsFetching || !filmsSuccess) ? <Loader /> : <DropDownWithInputFilms films={films.items} /> }
-        {actorsFetching ? <Loader /> : <DropDownWithInputActors actors={actors.items} /> }
+        {(actorsFetching || !actorsSuccess) ? <Loader /> : <DropDownWithInputActors actors={actors.items} /> }
       </div>
       )}
 
       {dropdownStateWithNoInput.open && (
-      <div className={style.container}>
+      <div className={style.container} ref={container}>
         <p className={style.title}>Входит в топ 10 за месяц</p>
         {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <DropDownNoInpyt films={popularFilms.films} />}
       </div>
