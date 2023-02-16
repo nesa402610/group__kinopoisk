@@ -1,59 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import {Films, FilterParams} from "../types/types";
 
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'
 export const TOP_100_POPULAR_FILMS = 'TOP_100_POPULAR_FILMS'
 export const TOP_AWAIT_FILMS = 'TOP_AWAIT_FILMS'
 export const AWAIT_FILMS_BY_NAME = 'AWAIT_FILMS_BY_NAME'
 const token = 'a2810fed-e498-4fe2-a69a-b14b641fa617'
-
-export type FilmCatalog = {
-  kinopoiskId: number;
-  imdbId: string;
-  nameRu: string;
-  nameEn?: string;
-  nameOriginal: string;
-  countries: string[];
-  genres: string[];
-  ratingKinopoisk: number;
-  ratingImdb?: number;
-  year: number;
-  type: string;
-  posterUrl: string;
-  posterUrlPreview: string;
-}
-
-export type FilmTop = {
-  filmId: number;
-  nameRu: string;
-  nameEn?: string;
-  year: string;
-  filmLength: string;
-  countries: string[];
-  genres: string[];
-  rating: string;
-  ratingVoteCount: number;
-  posterUrl: string;
-  posterUrlPreview: string;
-  ratingChange?: any;
-}
-
-export type Films = {
-  total?: number;
-  totalPages?: number;
-  pagesCount?: number;
-  items?: FilmCatalog[];
-  films?: FilmTop[];
-}
-
-export type FilterParams = {
-  page:number, 
-  order?:string, 
-  keyword?: string, 
-  country?:string, 
-  ratingFrom?: number, 
-  yearFrom?:string, 
-  yearTo?: string
-}
 
 export const kinopoiskApi = createApi({
   reducerPath: 'kinopoiskApi',
