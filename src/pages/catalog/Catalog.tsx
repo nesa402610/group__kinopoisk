@@ -32,7 +32,7 @@ export function Catalog() {
 
   const handlePageClick = (event: { selected: number }) => {
     const page = event.selected
-    console.log(page)
+    // console.log(page)
     setCurrentPageState(page)
   }
 
@@ -63,7 +63,7 @@ export function Catalog() {
   const minYearHandler = (e: { target: { value: any } }) => {
     setFilters({ ...filters, minYear: e.target.value })
   }
-  if(isSuccess) console.log(films)
+  // if(isSuccess) console.log(films)
 
   return (
 

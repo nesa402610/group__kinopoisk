@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import style from '../Dropdown.module.css'
 
 export function DropDownWithInputFilms({ films }) {
-  console.log(films)
+  // console.log(films)
 
   if (films.length === 0) return <p className={style.title}>Простите, из фильмов ничего не найдено</p>
   return (

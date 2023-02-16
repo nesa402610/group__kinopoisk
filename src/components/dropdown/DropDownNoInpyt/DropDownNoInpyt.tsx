@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import style from '../Dropdown.module.css'
 
 export function DropDownNoInpyt({ films }: any) {
-  console.log(films)
+  // console.log(films)
   return (
     <>
       {films.slice(0, 10).map((film:any) => (
