@@ -6,7 +6,6 @@ import {
 } from '../../API/kinopoiskAPI'
 import { setSearch } from '../../store/slices/filmsSlice'
 import { RootState, useAppDispatch } from '../../store/store'
-import { useDebounce } from '../coustomHooks/useDebounse'
 import { Loader } from '../loader/Loader'
 
 // @ts-ignore
@@ -16,6 +15,7 @@ import { DropDownNoInpyt } from './DropDownNoInpyt/DropDownNoInpyt'
 import { DropDownWithInputActors } from './DropDownWithInputActors/DropDownWithInputActors'
 // @ts-ignore
 import { DropDownWithInputFilms } from './DropDownWithInputFilms/DropDownWithInputFilms'
+import {useDebounce} from "../../coustomHooks/useDebounse";
 
 export default function Dropdown() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -56,7 +56,7 @@ export default function Dropdown() {
       // handleDropdownInput(e)
     }
     }
-    
+
   }
   const handleClickOutside = (e: React.MouseEvent<MouseEvent>) : void => {
     if(e.target){
@@ -67,7 +67,7 @@ export default function Dropdown() {
       setdropdownStateWithNoInput({ open: false })
       }
     }
-    
+
   }
 
   useEffect(() => {
