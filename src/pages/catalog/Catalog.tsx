@@ -32,7 +32,6 @@ export function Catalog() {
 
   const handlePageClick = (event: { selected: number }) => {
     const page = event.selected
-    // console.log(page)
     setCurrentPageState(page)
   }
 
@@ -44,23 +43,23 @@ export function Catalog() {
     setCountPages(films.totalPages + 1)
   }
 
-  const sortHandler = (e: { target: { value: any } }) => {
+  const sortHandler = (e : React.ChangeEvent<HTMLSelectElement>) => {
     setFilters({ ...filters, sortBy: e.target.value })
   }
 
-  const countryHandler = (e: { target: { value: any } }) => {
+  const countryHandler = (e : React.ChangeEvent<HTMLSelectElement>) => {
     setFilters({ ...filters, country: e.target.value })
   }
 
-  const ratingHandler = (e: { target: { value: any } }) => {
-    setFilters({ ...filters, rating: e.target.value })
+  const ratingHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters({ ...filters, rating: +e.target.value })
   }
 
-  const maxYearHandler = (e: { target: { value: any } }) => {
+  const maxYearHandler = (e : React.ChangeEvent<HTMLSelectElement>) => {
     setFilters({ ...filters, maxYear: e.target.value })
   }
 
-  const minYearHandler = (e: { target: { value: any } }) => {
+  const minYearHandler = (e : React.ChangeEvent<HTMLSelectElement>) => {
     setFilters({ ...filters, minYear: e.target.value })
   }
   // if(isSuccess) console.log(films)
@@ -136,7 +135,7 @@ export function Catalog() {
       </div>
 
       {(!isSuccess || filmsFetching)  ? <Loader /> : (
-        <FilmListContainer films={films.items} />
+        <FilmListContainer films={films.items!} />
       )}
       <ReactPaginate
         className="pagination"

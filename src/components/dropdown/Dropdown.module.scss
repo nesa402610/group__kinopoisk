@@ -13,7 +13,7 @@
     
     text-align: center;
     display: inline-block;
-    z-index: 3;
+    z-index: 1001;
     width: 60%;
     background-color: aliceblue;
     border-radius:10px
@@ -144,10 +144,8 @@
 
 
 .styles_mainLink:hover {
-
-
     background-color: rgba(0, 0, 0, 0.14);
-cursor: pointer;
+    cursor: pointer;
 }
 
 
