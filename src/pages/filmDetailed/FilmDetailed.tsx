@@ -6,19 +6,20 @@ import {FilmTrailers} from '../../components/filmTrailers/FilmTrailers'
 import React from 'react'
 import {IActorByFilmId } from '../../types/types'
 import { FilmImages } from '../../components/filmImages/FilmImages'
-
+import { SimilarFilms } from '../../components/similarFilms/SimilarFilms'
+import s from './filmDetailed.module.scss'
 
 
 export function FilmDetailed() {
   const {ID} = useParams()
-  const {data: film, error: filmErr, isLoading: filmLoad} = useGetFilmByIdQuery(ID!)
-  const {data: actors, isLoading: actorsLoad} = useGetActorsByFilmIdQuery(ID!)
-  if (filmLoad || !film || !actors) return <Loader/>
+  const {data: film, error: filmErr, isLoading: filmLoad,  isFetching} = useGetFilmByIdQuery(ID!)
+  const {data: actors, isLoading: actorsLoad } = useGetActorsByFilmIdQuery(ID!)
+  if (isFetching || !film || !actors) return <Loader/>
   if (filmErr || !ID) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container w-full">
-      <div className="flex my-4 gap-4 items-start flex-wrap	">
-        <div className="flex flex-col gap-4 max-w-md">
+      <div className="flex my-4 gap-4 items-start">
+        <div className={s.left}>
           <div
           className="flex justify-center rounded-lg overflow-hidden relative"
           style={{backgroundColor: '#eeeeee'}}
@@ -43,13 +44,13 @@ export function FilmDetailed() {
             </div>
             <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма"/>
           </div>
-          <div className='flex justify-center rounded-lg overflow-hidden bg-neutral-800'>
+          <div className='flex justify-center rounded-lg overflow-hidden bg-neutral-800 w-full'>
             <FilmImages  ID={ID}/>
           </div>
         </div>
         
-        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg">
-          <div className="flex flex-col gap-4">
+        <div className={s.right}>
+          <div className="flex flex-col gap-4 w-full">
             <div className="flex flex-col">
               <div className="flex gap-1 items-baseline">
                 <h1 className="text-2xl font-bold">
@@ -68,7 +69,7 @@ export function FilmDetailed() {
             </div>
             <div>
               <h3 className="text-lg font-bold">Список актеров</h3>
-              <div className={'flex gap-2 flex-wrap'}>{actors.map((actor: IActorByFilmId) =>
+              <div className={'flex gap-2 flex-wrap'}>{actors.slice(0, 20).map((actor: IActorByFilmId) =>
                 <div className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer'}>
                   {actor.nameRu !== '' ? actor.nameRu : actor.nameEn}
                 </div>
@@ -84,6 +85,7 @@ export function FilmDetailed() {
                 )}
               </div>
             </div>
+            <SimilarFilms ID={ID} />
             <div className="font-bold">
               <a
                 href={film.webUrl}
@@ -94,6 +96,7 @@ export function FilmDetailed() {
                 Подробнее на кинопоске
               </a>
             </div>
+            
           </div>
         </div>
       </div>

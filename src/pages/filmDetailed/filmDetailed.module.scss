@@ -1,0 +1,19 @@
+.left{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    width: calc((100% - 1rem) / 3 * 1);
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    width: calc((100% - 1rem) / 3 * 2);
+    border-radius: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+    padding: 1rem;
+}
