@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {Actors, FilmDetailed, Films, FilterParams, IActorByFilmId, IPhotos, Videos} from "../types/types";
+import {Actors, FilmDetailed, Films, FilterParams, IActorByFilmId, IPhotos, SimilarFilms, Videos} from "../types/types";
 
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'
 export const TOP_100_POPULAR_FILMS = 'TOP_100_POPULAR_FILMS'
@@ -39,7 +39,10 @@ export const kinopoiskApi = createApi({
     })),
     getPhotosByFilmId: (builder.query<IPhotos, string>({
       query: (id) => `/v2.2/films/${id}/images`
+    })),
+    getSimilarByFilmId: (builder.query<SimilarFilms, string>({
+      query: (id)=>`/v2.2/films/${id}/similars`
     }))
   }),
 })
-export const { useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery } = kinopoiskApi
+export const { useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery, useGetSimilarByFilmIdQuery } = kinopoiskApi
