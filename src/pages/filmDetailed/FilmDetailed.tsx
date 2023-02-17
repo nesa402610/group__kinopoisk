@@ -48,7 +48,7 @@ export function FilmDetailed() {
           </div>
         </div>
         
-        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg max-w-5xl">
+        <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col">
               <div className="flex gap-1 items-baseline">
