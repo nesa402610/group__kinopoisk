@@ -2,14 +2,25 @@ import { useParams } from 'react-router-dom'
 import { useGetFilmByIdQuery, useGetFilmVideosQuery } from '../../API/kinopoiskAPI'
 import { Loader } from '../../components/loader/Loader'
 import { ShortInfo } from '../../components/filmDetailed/ShortInfo'
-import { FilmTrailers, filterVideos } from '../../components/filmTrailers/FilmTrailers'
+import { FilmTrailers } from '../../components/filmTrailers/FilmTrailers'
 import React from 'react'
+import { Video } from '../../types/types'
+
+function filterVideos(videos:Video[]) : Video[]{
+  const videosWithId = videos.filter((e) => e.site === 'YOUTUBE').map((e) => {
+    // eslint-disable-next-line no-useless-escape
+    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+    const match = e.url.match(regExp)
+    return match ? { ...e, id: match[2] } : e
+  })
+  return videosWithId
+}
 
 export function FilmDetailed() {
   const { ID } = useParams()
-  const { data: film, error: filmErr, isLoading: filmLoad } = useGetFilmByIdQuery(Number(ID))
-  const { data: videos, isLoading: videoLoad } = useGetFilmVideosQuery(Number(ID))
-  if (filmLoad) return <Loader />
+  const { data: film, error: filmErr, isLoading: filmLoad } = useGetFilmByIdQuery(ID!)
+  const { data: videos, isLoading: videoLoad } = useGetFilmVideosQuery(ID!)
+  if (filmLoad || !film) return <Loader />
   if (filmErr) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container">
@@ -59,7 +70,7 @@ export function FilmDetailed() {
             <div>
               <h3 className="text-lg font-bold">Жанры</h3>
               <div className="flex gap-1">
-                {film.genres.map((genre: any) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
+                {film.genres.map((genre) => <span key={genre.genre} className="capitalize">{genre.genre}</span>)}
               </div>
             </div>
             <div className="font-bold">
@@ -74,20 +85,10 @@ export function FilmDetailed() {
             </div>
           </div>
         </div>
-
-        {/* Тестовый кусок, стоит переписать TODO */}
-        {/* <div>
-          {videos.items.map((video) => (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <video height="300px" width="300px" controls="controls">
-              <source src={video.url} />
-            </video>
-          ))}
-        </div> */}
       </div>
       
       
-      {videoLoad ? <Loader/> : (filterVideos(videos.items).length > 0 ? 
+      {(videoLoad || !videos) ? <Loader/> : (filterVideos(videos.items).length > 0 ? 
       <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
         <FilmTrailers ids={filterVideos(videos.items)} />
       </div> 

@@ -2,10 +2,11 @@ import Carousel from 'react-multi-carousel'
 import { FilmCardSmall } from '../../../components/filmCardSmall/FilmCardSmall'
 import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
+import { FilmTop } from '../../../types/types'
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 10000, min: 1024 },
     items: 7,
     slidesToSlide: 3, // optional, default to 1.
   },
@@ -21,7 +22,7 @@ const responsive = {
   },
 }
 
-export function FilmsCarousel({ films }: any) {
+export function FilmsCarousel({ films }: {films: FilmTop[]}) {
   return (
     <div>
       <Carousel
@@ -30,7 +31,7 @@ export function FilmsCarousel({ films }: any) {
         autoPlay
         autoPlaySpeed={7000}
       >
-        {films.map((film: any) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} />)}
+        {films.map((film) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} />)}
       </Carousel>
     </div>
   )

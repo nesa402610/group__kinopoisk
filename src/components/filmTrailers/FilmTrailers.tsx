@@ -1,19 +1,10 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import { Video } from '../../types/types'
 
-export function filterVideos(videos:any){
-  const ids = videos.filter((e: { site: string }) => e.site === 'YOUTUBE').map((e: { url: string }) => {
-    // eslint-disable-next-line no-useless-escape
-    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-    const match = e.url.match(regExp)
-    // @ts-ignore
-    return { ...e, id: match[2] }
-  })
-  return ids
-}
-
-export function FilmTrailers({ ids }: any) {
+export function FilmTrailers({ids} :  {ids: Video[]}) {
+  console.log(ids)
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 0 },
@@ -21,11 +12,10 @@ export function FilmTrailers({ ids }: any) {
     },
 
   }
-  // @ts-ignore
   return (
     <div className="flex flex-col gap-4">
       <Carousel className="" responsive={responsive}>
-        {ids.map((id: any) => (
+        {ids.map((id) => (
           <div key={id.name}>
             <div className="flex gap-1 items-baseline">
               <h1 className="text-2xl font-bold">
