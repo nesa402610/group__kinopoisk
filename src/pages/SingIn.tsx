@@ -1,9 +1,8 @@
-import { MouseEvent, useState} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import {signIn} from '../store/slices/userSlice'
-import React from 'react'
-import { useAppDispatch } from '../store/store'
+import {useAppDispatch} from '../store/store'
 
 export function SingIn() {
   const [password, setPassword] = useState<string>('')
@@ -15,14 +14,14 @@ export function SingIn() {
 
   const singInHandler = (e: MouseEvent) => {
     e.preventDefault()
-    axios.post('https://kinopoisk.na4u.ru/api/auth', { name, password })
+    axios.post('https://kinopoisk.na4u.ru/api/auth', {name, password})
       .then((r) => {
         if (r.data === 'INVALID LOGIN OR PASSWORD') {
           setErrors('Неверные логин или пароль')
         } else {
           setErrors('')
           dispatch(signIn(r.data.name))
-          localStorage.setItem('user', JSON.stringify({ token: r.data.token, name: r.data.name }))
+          localStorage.setItem('user', JSON.stringify({token: r.data.token, name: r.data.name}))
           nav('/')
         }
       })
