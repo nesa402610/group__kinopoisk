@@ -4,17 +4,15 @@ import { useSearchParams } from 'react-router-dom'
 import {
   kinopoiskApi, TOP_100_POPULAR_FILMS,
 } from '../../API/kinopoiskAPI'
+import { useDebounce } from '../../coustomHooks/useDebounse'
 import { setSearch } from '../../store/slices/filmsSlice'
 import { RootState, useAppDispatch } from '../../store/store'
-import { useDebounce } from '../coustomHooks/useDebounse'
 import { Loader } from '../loader/Loader'
 
-// @ts-ignore
-import style from './Dropdown.module.css'
+
+import style from './Dropdown.module.scss'
 import { DropDownNoInpyt } from './DropDownNoInpyt/DropDownNoInpyt'
-// @ts-ignore
 import { DropDownWithInputActors } from './DropDownWithInputActors/DropDownWithInputActors'
-// @ts-ignore
 import { DropDownWithInputFilms } from './DropDownWithInputFilms/DropDownWithInputFilms'
 
 export default function Dropdown() {
@@ -46,34 +44,29 @@ export default function Dropdown() {
     setInput(e.target.value)
   }
 
-  const handleDropdownClick = (e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    // @ts-ignore
-    if (e.target.value === '') {
+  const handleDropdownClick = (e: React.FocusEvent<HTMLInputElement>) => {
+    console.log('handleDropdownClick')
+    const target = e.target  as HTMLButtonElement
+    if(target){
+      if (target.value === '') {
       setdropdownStateWithNoInput({ open: true })
+      console.log('handleDropdownClick: Open')
     } else {
-      // @ts-ignore
       handleDropdownInput(e)
     }
-  }
-  const handleClickOutside = (event: any) => {
-    const target = event.target as HTMLDivElement
-    | HTMLInputElement
-    | HTMLParagraphElement
-    | HTMLButtonElement
-    | HTMLHeadingElement;
-    // if (target?.contains(container.current) && target !== container.current)
-    
-    if (!container.current?.contains(event.target))
-    {
-      setdropdownStateWithInput({ open: false })
-      setdropdownStateWithNoInput({ open: false })
     }
 
-    console.log('woks')
+  }
 
-    console.log(event.target)
-    console.log(container.current)
-
+  const handleClickOutside = (ev: MouseEvent) : any => {
+    if(ev.target){
+      console.log(ev.target)
+      console.log(container)
+      if (!container.current?.contains(ev.target as Node)) {
+      setdropdownStateWithInput({ open: false })
+      setdropdownStateWithNoInput({ open: false })
+      }
+    }
 
   }
 
@@ -112,6 +105,8 @@ export default function Dropdown() {
     data: actors, isFetching: actorsFetching, isSuccess: actorsSuccess
   } = kinopoiskApi.useGetActorsByNameQuery({ page: 1, name: input })
 
+  
+
   return (
     <div className=" flex-1">
 
@@ -120,12 +115,12 @@ export default function Dropdown() {
         className="w-full text-neutral-300 focus-within:text-white rounded-full focus-visible:outline outline-2 outline-neutral-500 py-2 px-4 bg-neutral-700"
         value={search}
         onChange={(e) => handleDropdownInput(e)}
-        onClick={(e) => handleDropdownClick(e)}
+        onFocus={(e)=> handleDropdownClick(e)}
       />
       {dropdownStateWithInput.open && (
       <div className={style.container} ref={container}>
         <p className={style.title}>Возможно вы искали</p>
-        {(filmsFetching || !filmsSuccess) ? <Loader /> : <DropDownWithInputFilms films={films.items} /> }
+        {(filmsFetching || !filmsSuccess) ? <Loader /> : <DropDownWithInputFilms films={films.items!} /> }
         {(actorsFetching || !actorsSuccess) ? <Loader /> : <DropDownWithInputActors actors={actors.items} /> }
       </div>
       )}
@@ -133,7 +128,7 @@ export default function Dropdown() {
       {dropdownStateWithNoInput.open && (
       <div className={style.container} ref={container}>
         <p className={style.title}>Входит в топ 10 за месяц</p>
-        {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <DropDownNoInpyt films={popularFilms.films} />}
+        {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <DropDownNoInpyt films={popularFilms.films!} />}
       </div>
       )}
     </div>

@@ -1,20 +1,17 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-// @ts-ignore
-import style from '../Dropdown.module.css'
+import { Link } from 'react-router-dom'
+import { FilmTop } from '../../../types/types'
+import style from '../Dropdown.module.scss'
 
-export function DropDownNoInpyt({ films }: any) {
-  console.log(films)
+export function DropDownNoInpyt({ films }: {films:FilmTop[]}) {
+  console.log(style)
   return (
     <>
-      {films.slice(0, 10).map((film:any) => (
+      {films!.slice(0, 10).map((film) => (
         <div key={film.filmId} className={style.styles_mainLink}>
-
+          <Link to={`/film/${film.filmId}`} >
           <div className={style.styles_root}>
-
             <div className={style.styles_mainContainer}>
-              <NavLink to={''} className={style.styles_mainLink}><span /></NavLink>
-
               <div className={style.styles_imgContainer}>
                 <img className={style.styles_img} alt={film.nameRu} src={film.posterUrlPreview} />
               </div>
@@ -28,7 +25,7 @@ export function DropDownNoInpyt({ films }: any) {
                     <div className={style.styles_rootPositive}>{film.rating}</div>
                   </div>
                   <span className={style.styles_subtitle4}>
-                    {film.genres.map((genre: any) => (
+                    {film.genres.map((genre) => (
                       <span key={genre.genre} className={style.styles_subtitle4}>
                         {genre.genre}
 
@@ -42,7 +39,9 @@ export function DropDownNoInpyt({ films }: any) {
               </div>
             </div>
           </div>
+          </Link>
         </div>
+        
       ))}
     </>
   )

@@ -4,8 +4,8 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
 export function SingUp() {
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
+  const [password, setPassword] = useState<string>('')
+  const [name, setName] = useState<string>('')
   const nav = useNavigate()
 
   const singUnHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

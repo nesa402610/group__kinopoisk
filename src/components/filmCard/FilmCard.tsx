@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-// @ts-ignore
 import s from './filmCard.module.scss'
 
 export function FilmCard({

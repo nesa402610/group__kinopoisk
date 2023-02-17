@@ -21,12 +21,12 @@ export function Homepage() {
   return (
     <div className="w-full container flex flex-col justify-center gap-5 py-3">
       <h1 className="text-3xl text-center">Лучшие фильмы</h1>
-      {(bestFilmsFetching || !bestFilmsSuccess) ? <Loader /> : <FilmsCarousel films={bestFilms.films} />}
+      {(bestFilmsFetching || !bestFilmsSuccess) ? <Loader /> : <FilmsCarousel films={bestFilms.films!} />}
 
       <h1 className="text-3xl text-center">Популярные фильмы</h1>
-      {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <FilmsCarousel films={popularFilms.films} />}
+      {(popularFilmsFetching || !popularFilmsSuccess) ? <Loader /> : <FilmsCarousel films={popularFilms.films!} />}
       <h1 className="text-3xl text-center">Ожидаемые Фильмы</h1>
-      {(awaitFilmsFetching || !awaitFilmsSuccess) ? <Loader /> : <FilmsCarousel films={awaitFilms.films} />}
+      {(awaitFilmsFetching || !awaitFilmsSuccess) ? <Loader /> : <FilmsCarousel films={awaitFilms.films!} />}
     </div>
   )
 }
