@@ -137,3 +137,14 @@ export interface FilmDetailed {
   has3D: boolean;
   lastSync: Date;
 }
+
+export interface IPhoto {
+  imageUrl: string;
+  previewUrl: string;
+}
+
+export interface IPhotos {
+  total: number;
+  totalPages: number;
+  items: IPhoto[];
+}

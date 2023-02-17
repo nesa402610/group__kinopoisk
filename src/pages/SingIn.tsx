@@ -12,7 +12,7 @@ export function SingIn() {
   const dispatch = useAppDispatch()
   const nav = useNavigate()
 
-  const singInHandler = (e: MouseEvent) => {
+  const singInHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     axios.post('https://kinopoisk.na4u.ru/api/auth', {name, password})
       .then((r) => {
