@@ -5,6 +5,15 @@ export interface Country {
 export interface Genre {
   genre: string;
 }
+export interface IActorByFilmId {
+  staffId: number;
+  nameRu: string;
+  nameEn: string;
+  description: string;
+  posterUrl: string;
+  professionText: string;
+  professionKey: string;
+}
 
 export interface FilmCatalog {
   kinopoiskId: number;
@@ -63,6 +72,7 @@ export interface Actor {
   sex: string;
   posterUrl: string;
 }
+
 
 export interface Actors {
   total: number;
