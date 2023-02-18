@@ -32,8 +32,8 @@ export function FilmTrailers({ID} : {ID : string}) {
   return (
         <div className="flex flex-col gap-4 bg-neutral-700 p-4 rounded-lg">
           <div className="flex flex-col gap-4">
-      <Carousel className="" responsive={responsive}>
-        {filteredVideos.map((video) => (
+      <Carousel className="" responsive={responsive} showDots>
+        {filteredVideos.slice(0, 3).map((video) => (
           <div key={video.name}>
             <div className="flex gap-1 items-baseline">
               <h1 className="text-2xl font-bold">

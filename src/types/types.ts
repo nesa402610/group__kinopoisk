@@ -35,15 +35,32 @@ export interface FilmTop {
   filmId: number;
   nameRu: string;
   nameEn: string | null;
-  year: string;
-  filmLength: string;
-  countries: Country[];
-  genres: Genre[];
-  rating: string;
-  ratingVoteCount: number;
+  nameOriginal?: string;
+  year?: string;
+  filmLength?: string;
+  countries?: Country[];
+  genres?: Genre[];
+  rating?: string;
+  ratingVoteCount?: number;
   posterUrl: string;
   posterUrlPreview: string;
   ratingChange?: string;
+  relationType?: string;
+}
+
+export interface FilmSimilar {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  relationType: string;
+}
+
+export interface SimilarFilms {
+  total: number;
+  items: FilmTop[];
 }
 
 export interface Films {
