@@ -5,7 +5,6 @@ import { Loader } from '../loader/Loader';
 
 export function FilmImages({ID} : {ID  :string }){
   const {data, isLoading, isSuccess} = useGetPhotosByFilmIdQuery(ID)
-  console.log(data)
   const responsive = {
     desktop: {
       breakpoint: { max: 10000, min: 1024 },
@@ -16,7 +15,8 @@ if(!data || isLoading || !isSuccess){
   return <Loader />}
 const items = data.items
 return (
-  <div className='flex flex-col w-full'>
+  <div className='w-full'>
+    test
     <Carousel
         responsive={responsive}
         infinite

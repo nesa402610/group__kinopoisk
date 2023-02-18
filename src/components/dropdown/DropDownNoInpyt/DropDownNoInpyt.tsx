@@ -25,7 +25,7 @@ export function DropDownNoInpyt({ films }: {films:FilmTop[]}) {
                     <div className={style.styles_rootPositive}>{film.rating}</div>
                   </div>
                   <span className={style.styles_subtitle4}>
-                    {film.genres.map((genre) => (
+                    {film.genres?.map((genre) => (
                       <span key={genre.genre} className={style.styles_subtitle4}>
                         {genre.genre}
 
