@@ -1,55 +1,39 @@
 
 
 
-
-import {useParams} from 'react-router-dom'
-import {useGetActorByIdQuery } from '../../API/kinopoiskAPI'
-import {Loader} from '../../components/loader/Loader'
-// import {ShortInfo} from '../../components/actorDetailed/ShortInfo'
-// import {actorTrailers} from '../../components/actorTrailers/actorTrailers'
 import React from 'react'
-import { FilmImages } from '../../components/filmImages/FilmImages'
-// import {IActorByactorId } from '../../types/types'
-// import { actorImages } from '../../components/actorImages/actorImages'
+import {Link, useParams} from 'react-router-dom'
+
+import {useGetActorByIdQuery } from '../../API/kinopoiskAPI'
+import { FilmsByActor } from '../../components/filmsByActor/filmsByActor'
+import {Loader} from '../../components/loader/Loader'
+import { FamilyForActor } from '../../types/types'
 
 
 
 export function ActorDetail() {
+
+ 
   const {ID} = useParams()
   const {data: actor, error: actorErr, isLoading: actorLoad} = useGetActorByIdQuery(ID!)
   if (actorLoad || !actor) return <Loader/>
+  console.log(actor)
+  function strokeReverse (stroke: string){
+    return stroke.split("-").reverse().join("-");
+  }
   if (actorErr || !ID) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container w-full">
       <div className="flex my-4 gap-4 items-start flex-wrap	">
         <div className="flex flex-col gap-4 max-w-md">
-          {/* <div
-          className="flex justify-center rounded-lg overflow-hidden relative"
+          <div
+          className="flex justify-center rounded-lg overflow-hidden relative bg-cover"
           style={{backgroundColor: '#eeeeee'}}
           >
-            <div className="absolute py-1 px-4 justify-between text-2xl font-bold flex gap-2 bg-neutral-800/80 w-full">
-              <ShortInfo title="КП">
-                <span className={`${actor.ratingKinopoisk > 7 ? ' text-green-500' : ' text-orange-500'}`}>
-                  {actor.ratingKinopoisk}
-                </span>
-              </ShortInfo>
-              <ShortInfo title="IMDB">
-                <span className={`${actor.ratingImdb > 7 ? ' text-green-500' : ' text-orange-500'}`}>
-                  {actor.ratingImdb}
-                </span>
-              </ShortInfo>
-              <ShortInfo title="ГОД">
-                <span>{actor.year}</span>
-              </ShortInfo>
-              <ShortInfo title="МИНУТ">
-                <span>{actor.actorLength}</span>
-              </ShortInfo>
-            </div>
-            <img src={actor.coverUrl ?? actor.posterUrl} alt="обложка фильма"/>
-          </div> */}
-          <div className='flex justify-center rounded-lg overflow-hidden bg-neutral-800'>
-            <FilmImages  ID={ID}/>
+  
+            <img className='w-full' src={actor.posterUrl} alt="обложка фильма"/>
           </div>
+
         </div>
         
         <div className="flex flex-col gap-4 flex-1 bg-neutral-700 p-4 rounded-lg max-w-5xl">
@@ -60,38 +44,52 @@ export function ActorDetail() {
                   {actor.nameRu}
                 </h1>
               </div>
-              {/* <div className="flex gap-1 text-sm text-neutral-400">
-                <h2 className="">{actor.nameOriginal}</h2>
-                {actor.nameRu && actor.slogan ? '|' : ''}
-                <h3 className="italic">{actor.slogan}</h3>
-              </div> */}
+              <div className="flex gap-1 text-sm text-neutral-400">
+                <h2 className="">{actor.nameEn}</h2>
+             
+              </div>
             </div>
             <div>
-              <h3 className="text-lg font-bold">Описание</h3>
-              <p>{actor.facts?.map((fact)=>
-              <div className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer'}>
-              <span key={fact} className="capitalize">{fact}</span>
+
+
+              <h3 className="text-lg font-bold">О персоне</h3>
+              <p><span className="text-neutral-400">Возраст:</span> {actor.age} лет</p>
+              <p><span className="text-neutral-400">Дата рождения:</span> {strokeReverse(actor.birthday)}</p>
+              {actor.death ? <p><span className="text-neutral-400">Дата смерти:</span> {strokeReverse(actor.death)}</p>: null }
+              {actor.deathplace ?  <p><span className="text-neutral-400">Место смерти:</span> {actor.deathplace}</p>: null}
+             {actor.hasAwards ? <p><span className="text-neutral-400">Количесвто наград:</span> {actor.hasAwards} шт.</p> :
+             null } 
+              <p><span className="text-neutral-400">Карьера:</span> {actor.profession}</p>
+              <p><span className="text-neutral-400">Количество фильмов:</span> {actor.films.length} шт.</p>
+
+              {actor.spouses.length !== 0 ?  <div className='flex'><p><span className="text-neutral-400">Семья:</span></p>{actor.spouses.map((person: FamilyForActor)=>
+              <div key={person.personId} className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer inline'}>
+                  <a href={person.webUrl}>
+                {person.name}
+                </a>
+              </div> 
+              )} </div> : null }
+
             </div>
-              )}</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold">Список актеров</h3>
-              {/* <div className={'flex gap-2 flex-wrap'}>{actors.map((actor: IActorByactorId) =>
-                <div className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer'}>
-                  {actor.nameRu !== '' ? actor.nameRu : actor.nameEn}
-                </div>
-              )}</div> */}
-            </div>
-            <div>
-              <h3 className="text-lg font-bold">Жанры</h3>
-              {/* <div className="flex gap-1">
-                {actor.genres.map((genre) =>
-                  <div className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer'}>
-                    <span key={genre.genre} className="capitalize">{genre.genre}</span>
-                  </div>
-                )}
-              </div> */}
-            </div>
+            
+              <FilmsByActor film = {actor.films} />
+              {actor.facts ?
+              <div>
+                <h3  className="text-lg font-bold">
+                Знаете ли вы, что…
+                </h3>
+                <ul className='list-disc ml-5'>
+               {actor.facts.map((fact)=>
+               <li key={fact}>
+                {fact}
+               </li>
+               ) }
+               </ul>
+              </div> : null}
+
+              
+           
+           
             <div className="font-bold">
               <a
                 href={actor.webUrl}

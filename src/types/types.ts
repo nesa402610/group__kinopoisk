@@ -50,11 +50,11 @@ export interface ActorByID {
   age: number;
   birthplace: string;
   deathplace?: string | null;
-  spouses: FamilyForActor[] | null;
+  spouses:[];
   hasAwards: number;
   profession: string;
   facts: string[] | null;
-  films: FilmsForActor[];
+  films: [];
 }
 
 export interface FilmCatalog {

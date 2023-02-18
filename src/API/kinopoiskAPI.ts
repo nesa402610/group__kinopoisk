@@ -48,4 +48,4 @@ export const kinopoiskApi = createApi({
     }))
   }),
 })
-export const { useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery } = kinopoiskApi
+export const { useGetSimilarByFilmIdQuery, useGetActorByIdQuery, useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery } = kinopoiskApi
