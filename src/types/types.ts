@@ -15,6 +15,48 @@ export interface IActorByFilmId {
   professionKey: string;
 }
 
+export interface FilmsForActor {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  rating: string;
+  general: boolean;
+  description?: string;
+  professionKey: string;
+}
+
+export interface FamilyForActor {
+  personId?: number;
+  name?: string;
+  divorced?: boolean;
+  divorcedReason?: string;
+  sex?: string;
+  children?: number;
+  webUrl?: string;
+  relation?: string;
+}
+
+
+export interface ActorByID {
+  personId: number;
+  webUrl: string;
+  nameRu: string;
+  nameEn: string;
+  sex: string;
+  posterUrl: string;
+  growth: number;
+  birthday: string;
+  death?: string | null;
+  age: number;
+  birthplace: string;
+  deathplace?: string | null;
+  spouses: FamilyForActor[] | null;
+  hasAwards: number;
+  profession: string;
+  facts: string[] | null;
+  films: FilmsForActor[];
+}
+
 export interface FilmCatalog {
   kinopoiskId: number;
   imdbId: string;

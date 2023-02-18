@@ -9,6 +9,7 @@ import { AboutPage } from './about/AboutPage'
 import { ProfilePage } from './profile/ProfilePage'
 import { FilmDetailed } from './filmDetailed/FilmDetailed'
 import React from 'react'
+import { ActorDetail } from './ActorDetail/ActorDetail'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ export const router = createBrowserRouter(
       <Route path="about" element={<AboutPage />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="film/:ID" element={<FilmDetailed />} />
+      <Route path="actor/:ID" element={<ActorDetail />} />
     </Route>,
   ),
 )
