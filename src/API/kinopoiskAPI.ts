@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {Actors, FilmDetailed, Films, FilterParams, IActorByFilmId, IPhotos, SimilarFilms, Videos} from "../types/types";
+import {ActorByID, Actors, FilmDetailed, Films, FilterParams, IActorByFilmId, IPhotos, SimilarFilms, Videos} from "../types/types";
 
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'
 export const TOP_100_POPULAR_FILMS = 'TOP_100_POPULAR_FILMS'
