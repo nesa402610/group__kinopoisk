@@ -21,7 +21,7 @@ export function Header() {
             <Link to="/about">О проекте</Link>
           </div>
 
-          {location.pathname === '/' ? <Dropdown /> : (
+          {location.pathname !== '/films' ? <Dropdown /> : (
             <div className="flex-1">
               <input
                 type="text"

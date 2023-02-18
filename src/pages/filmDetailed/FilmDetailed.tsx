@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {useGetActorsByFilmIdQuery, useGetFilmByIdQuery } from '../../API/kinopoiskAPI'
 import {Loader} from '../../components/loader/Loader'
 import {ShortInfo} from '../../components/filmDetailed/ShortInfo'
@@ -71,7 +71,9 @@ export function FilmDetailed() {
               <h3 className="text-lg font-bold">Список актеров</h3>
               <div className={'flex gap-2 flex-wrap'}>{actors.slice(0, 20).map((actor: IActorByFilmId) =>
                 <div className={'bg-neutral-800 px-2 py-1 rounded-full hover:bg-neutral-900 transition-all cursor-pointer'}>
+                  <Link to={`/actor/${actor.staffId}`}>
                   {actor.nameRu !== '' ? actor.nameRu : actor.nameEn}
+                  </Link>
                 </div>
               )}</div>
             </div>

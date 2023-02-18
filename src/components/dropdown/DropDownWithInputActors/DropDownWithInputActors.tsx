@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Actor } from '../../../types/types'
 import style from '../Dropdown.module.scss'
 
@@ -10,11 +10,12 @@ export function DropDownWithInputActors({ actors } : {actors : Actor[]}) {
       <p className={style.title}>Актеры, режиссеры и т.д.</p>
       {actors?.slice(0, 5).map((actor) => (
         <div key={actor.kinopoiskId} className={style.styles_mainLink}>
+          <Link to={`/actor/${actor.kinopoiskId}`} >
 
           <div className={style.styles_root}>
 
             <div className={style.styles_mainContainer}>
-              <NavLink className={style.styles_mainLink} to=""><span /></NavLink>
+              <NavLink className={style.styles_mainLink} to="/actor/"><span /></NavLink>
 
               <div className={style.styles_imgContainer}>
                 <img className={style.styles_img} alt={actor.nameRu} src={actor.posterUrl} />
@@ -28,7 +29,9 @@ export function DropDownWithInputActors({ actors } : {actors : Actor[]}) {
               </div>
             </div>
           </div>
+          </Link>
         </div>
+      
       ))}
     </>
   )
