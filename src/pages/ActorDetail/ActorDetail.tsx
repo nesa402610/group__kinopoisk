@@ -24,8 +24,8 @@ export function ActorDetail() {
   if (actorErr || !ID) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
   return (
     <div className="container w-full">
-      <div className="flex my-4 gap-4 items-start flex-wrap	">
-        <div className="flex flex-col gap-4 max-w-md">
+      <div className="flex justify-center my-4 gap-4 items-start flex-wrap	w-full">
+        <div className="flex flex-col gap-4 max-w-md basis-1/3">
           <div
           className="flex justify-center rounded-lg overflow-hidden relative bg-cover"
           style={{backgroundColor: '#eeeeee'}}
