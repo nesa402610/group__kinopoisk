@@ -21,7 +21,7 @@ export function FilmDetailed() {
       <div className="flex my-4 gap-4 items-start">
         <div className={s.left}>
           <div
-          className="flex justify-center rounded-lg overflow-hidden relative"
+          className="flex justify-center rounded-lg overflow-hidden relative w-full"
           style={{backgroundColor: '#eeeeee'}}
           >
             <div className="absolute py-1 px-4 justify-between text-2xl font-bold flex gap-2 bg-neutral-800/80 w-full">
@@ -42,7 +42,7 @@ export function FilmDetailed() {
                 <span>{film.filmLength}</span>
               </ShortInfo>
             </div>
-            <img src={film.coverUrl ?? film.posterUrl} alt="обложка фильма"/>
+              <img className='w-full' src={film.coverUrl ?? film.posterUrl} alt="обложка фильма"/>
           </div>
           <div className='flex justify-center rounded-lg overflow-hidden bg-neutral-800 w-full'>
             <FilmImages  ID={ID}/>
