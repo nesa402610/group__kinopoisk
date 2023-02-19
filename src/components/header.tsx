@@ -10,6 +10,7 @@ export function Header() {
   const { search } = useSelector((state : RootState) => state.films)
   const dispatch = useAppDispatch()
   const location = useLocation()
+  console.log(isAuth)
   return (
     <header className="bg-neutral-800">
       <div className="container m-auto">
