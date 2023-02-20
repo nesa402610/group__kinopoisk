@@ -1,9 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
+import {Actors, Films} from "../../types/types";
 
-const initialState = {
+interface initialStateProps {
+  films: Films[],
+  search: string,
+  actors: Actors[],
+  favourite: number[]
+}
+
+const initialState: initialStateProps = {
   films: [],
   search: '',
   actors: [],
+  favourite: []
 }
 const filmsSlice = createSlice({
   name: 'films',
@@ -18,7 +27,12 @@ const filmsSlice = createSlice({
     getActors(state, action) {
       state.films = action.payload
     },
+    setFavouriteFilms(state) {
+      const ls = localStorage.getItem('favFilms') || '[]'
+
+      state.favourite = JSON.parse(ls)
+    }
   },
 })
 export default filmsSlice.reducer
-export const { getFilms, setSearch, getActors } = filmsSlice.actions
+export const {getFilms, setSearch, getActors, setFavouriteFilms} = filmsSlice.actions
