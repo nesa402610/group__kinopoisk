@@ -2,9 +2,12 @@ import Carousel from 'react-multi-carousel'
 import { FilmCardSmall } from '../../../components/filmCardSmall/FilmCardSmall'
 import 'react-multi-carousel/lib/styles.css'
 import React from 'react'
-import { FilmTop } from '../../../types/types'
+import { FilmDetailed, FilmTop } from '../../../types/types'
 
-export function FilmsCarousel({ films, page }: {films: FilmTop[], page: 'home' | 'detail'}) {
+export function FilmsCarousel({ films = undefined, filmsDetailed = undefined, page }: {films?: FilmTop[] | undefined, filmsDetailed?:FilmDetailed[] | undefined, page: 'home' | 'detail'}) {
+  console.log(`films: ${films}`)
+  console.log(`filmsDetailed: ${filmsDetailed}`)
+
   const responsive = page==='home' ?{
     desktop: {
       breakpoint: { max: 10000, min: 1024 },
@@ -38,8 +41,9 @@ export function FilmsCarousel({ films, page }: {films: FilmTop[], page: 'home' |
       slidesToSlide: 1, 
     },
   }
-  return (
-    
+
+  if(films !== undefined && filmsDetailed===undefined){
+    return (
     <div className='w-full'>
       <Carousel
         responsive={responsive}
@@ -47,8 +51,21 @@ export function FilmsCarousel({ films, page }: {films: FilmTop[], page: 'home' |
         autoPlay
         autoPlaySpeed={7000}
       >
-        {films.map((film) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year ? film.year : ''} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} />)}
+        {films !== undefined ? films.map((film) => <FilmCardSmall key={film.filmId} name={film.nameRu} year={film.year ? film.year : ''} rating={film.rating} img={film.posterUrlPreview} id={film.filmId} />) : ''}
       </Carousel>
     </div>
-  )
+  )}else if(films === undefined && filmsDetailed !==undefined){
+    return (
+      <div className='w-full'>
+        <Carousel
+          responsive={responsive}
+          infinite
+          autoPlay
+          autoPlaySpeed={7000}
+        >
+          {filmsDetailed ? filmsDetailed.map((film) => <FilmCardSmall key={film.kinopoiskId} name={film.nameRu} year={film.year.toString()} rating={film.ratingKinopoisk.toString()} img={film.posterUrlPreview} id={film.kinopoiskId} />) : ''}
+        </Carousel>
+      </div>
+    )
+  }else return <div>error</div>
 }

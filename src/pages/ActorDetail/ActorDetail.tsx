@@ -1,27 +1,28 @@
 
 
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 
-import {useGetActorByIdQuery } from '../../API/kinopoiskAPI'
+import { useGetActorByIdQuery } from '../../API/kinopoiskAPI'
 import { FilmsByActor } from '../../components/filmsByActor/filmsByActor'
 import {Loader} from '../../components/loader/Loader'
-import { FamilyForActor } from '../../types/types'
+import { FamilyForActor, FilmTop } from '../../types/types'
 
 
 
 export function ActorDetail() {
 
- 
   const {ID} = useParams()
-  const {data: actor, error: actorErr, isLoading: actorLoad} = useGetActorByIdQuery(ID!)
-  if (actorLoad || !actor) return <Loader/>
-  console.log(actor)
+  const {data: actor, error: actorErr, isLoading: actorLoad, isSuccess} = useGetActorByIdQuery(ID!)
+  if (actorLoad || !actor || !isSuccess) return <Loader/>
   function strokeReverse (stroke: string){
     return stroke.split("-").reverse().join("-");
   }
+
   if (actorErr || !ID) return <h1 className="text-center font-bold text-2xl">Произошла ошибка</h1>
+  const ids = actor!.films!.slice(0,7).map((film:FilmTop)=> film.filmId.toString())
+  console.log(actor)
   return (
     <div className="container w-full">
       <div className="flex justify-center my-4 gap-4 items-start flex-wrap	w-full">
@@ -54,7 +55,7 @@ export function ActorDetail() {
 
               <h3 className="text-lg font-bold">О персоне</h3>
               <p><span className="text-neutral-400">Возраст:</span> {actor.age} лет</p>
-              <p><span className="text-neutral-400">Дата рождения:</span> {strokeReverse(actor.birthday)}</p>
+              {actor.birthday ? <p><span className="text-neutral-400">Дата рождения:</span> {strokeReverse(actor.birthday)}</p> : ''}  
               {actor.death ? <p><span className="text-neutral-400">Дата смерти:</span> {strokeReverse(actor.death)}</p>: null }
               {actor.deathplace ?  <p><span className="text-neutral-400">Место смерти:</span> {actor.deathplace}</p>: null}
              {actor.hasAwards ? <p><span className="text-neutral-400">Количесвто наград:</span> {actor.hasAwards} шт.</p> :
@@ -72,7 +73,7 @@ export function ActorDetail() {
 
             </div>
             
-              <FilmsByActor film = {actor.films} />
+              {ids ? <FilmsByActor ids = {ids} /> : <Loader />}
               {actor.facts ?
               <div>
                 <h3  className="text-lg font-bold">
