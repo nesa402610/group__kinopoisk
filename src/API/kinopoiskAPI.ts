@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
 import {ActorByID, Actors, FilmDetailed, Films, FilterParams, IActorByFilmId, IPhotos, SimilarFilms, Videos} from "../types/types";
 
 export const TOP_250_BEST_FILMS = 'TOP_250_BEST_FILMS'
@@ -45,7 +45,19 @@ export const kinopoiskApi = createApi({
     })),
     getSimilarByFilmId: (builder.query<SimilarFilms, string>({
       query: (id)=>`/v2.2/films/${id}/similars`
-    }))
+    })),
+    getFilmsByIds: builder.query<FilmDetailed[], string[]>({
+      async queryFn(ids, _queryApi, _extraOptions, fetchWithBQ) {
+        const filmsQueries = ids.map((id)=>fetchWithBQ(`/v2.2/films/${id}`))
+        const results = await Promise.all(filmsQueries)
+        const films = results.map((result)=>result.data as FilmDetailed)
+        console.log(films)
+        return films
+          ? { data: films}
+          : { error: {} as FetchBaseQueryError }
+      },
+    }),
   }),
 })
-export const { useGetSimilarByFilmIdQuery, useGetActorByIdQuery, useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery } = kinopoiskApi
+export const { useGetSimilarByFilmIdQuery, useGetActorByIdQuery, useGetFilmByIdQuery, useGetFilmVideosQuery, useGetActorsByFilmIdQuery, useGetPhotosByFilmIdQuery, useGetFilmsByIdsQuery } = kinopoiskApi
+
