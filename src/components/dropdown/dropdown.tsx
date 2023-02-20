@@ -46,7 +46,7 @@ export default function Dropdown() {
 
   const handleDropdownClick = (e: React.FocusEvent<HTMLInputElement>) => {
     console.log('handleDropdownClick')
-    const target = e.target  as HTMLButtonElement
+    const target = e.target
     if(target){
       if (target.value === '') {
       setdropdownStateWithNoInput({ open: true })
@@ -58,7 +58,7 @@ export default function Dropdown() {
 
   }
 
-  const handleClickOutside = (ev: MouseEvent) : any => {
+  const handleClickOutside = (ev: MouseEvent) => {
     if(ev.target){
       console.log(ev.target)
       console.log(container)
