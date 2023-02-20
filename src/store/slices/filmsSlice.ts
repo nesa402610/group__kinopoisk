@@ -12,7 +12,7 @@ const initialState: initialStateProps = {
   films: [],
   search: '',
   actors: [],
-  favourite: []
+  favourite: localStorage.getItem('favFilms') !== null ? JSON.parse(localStorage.getItem('favFilms')!) : []
 }
 const filmsSlice = createSlice({
   name: 'films',

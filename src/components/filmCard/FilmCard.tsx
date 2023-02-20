@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { setFavouriteFilms } from '../../store/slices/filmsSlice'
+import { useAppDispatch, useAppSelector } from '../../store/store'
 import s from './filmCard.module.scss'
 
 
@@ -8,30 +9,30 @@ import s from './filmCard.module.scss'
 export function FilmCard({
   name, year, rating, img, id, genres,
 }:{name: string, year: number, rating: number, img: string, id: number, genres: Array<{genre:string}>}) {
-  const [likedState, setLikedState] = useState(false)
-  // const dispatch = useAppDispatch()
-  // const favouriteHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-  //   e.preventDefault()
-  //   const favFilms = localStorage.getItem('favFilms')
-  //   if (favFilms) {
-  //     const parsed = JSON.parse(favFilms)
-  //     if (parsed.includes(id)) {
-  //       const removed = parsed.filter((film: number) => film !== id)
+  const dispatch = useAppDispatch()
+  const {favourite} = useAppSelector(state => state.films)
+  const favouriteHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    e.preventDefault()
+    const favFilms = localStorage.getItem('favFilms')
+    if (favFilms) {
+      const parsed = JSON.parse(favFilms)
+      if (parsed.includes(id)) {
+        const removed = parsed.filter((film: number) => film !== id)
 
-  //       if (removed.length === 0) {
-  //         localStorage.removeItem('favFilms')
-  //       } else localStorage.setItem('favFilms', JSON.stringify(removed))
+        if (removed.length === 0) {
+          localStorage.removeItem('favFilms')
+        } else localStorage.setItem('favFilms', JSON.stringify(removed))
 
-  //     } else {
-  //       const added = [...parsed, id]
-  //       localStorage.setItem('favFilms', JSON.stringify(added))
-  //     }
-  //     dispatch(setFavouriteFilms(parsed))
-  //   } else {
-  //     localStorage.setItem('favFilms', JSON.stringify([id]))
-  //   }
-  //   dispatch(setFavouriteFilms())
-  // };
+      } else {
+        const added = [...parsed, id]
+        localStorage.setItem('favFilms', JSON.stringify(added))
+      }
+      dispatch(setFavouriteFilms(parsed))
+    } else {
+      localStorage.setItem('favFilms', JSON.stringify([id]))
+    }
+    dispatch(setFavouriteFilms())
+  };
 
   return (
     <Link to={`/film/${id}`} className={`max-w-sm rounded-xl overflow-hidden shadow-lg bg-black m-2 cursor-pointer relative ${s.card}`} style={({ width: '300px', height: '400px' })}>
@@ -58,16 +59,10 @@ export function FilmCard({
         </div>
       </div>
 
-      <button
-        type="button"
-        className="text-white absolute top-3 right-3 text-3xl"
-        onClick={() => {
-          setLikedState(!likedState)
-
-        }}
-      >
-        <i className={`${likedState ? 'fa-solid' : 'fa-regular'} fa-heart`} />
-      </button>
+      <div className={(favourite.includes(id) ? 'text-amber-600 ' : '') + 'absolute transition-all right-0 top-0 px-2 text-white text-5xl hover:text-neutral-300 z-10'}
+           onClick={e => favouriteHandler(e)}>
+        ♥
+      </div>
       <div className={`${s.rating} ${rating > 8 ? s.gold : s.gray}`}>{rating}</div>
     </Link>
   )
