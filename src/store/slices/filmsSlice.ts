@@ -31,7 +31,7 @@ const filmsSlice = createSlice({
       const ls = localStorage.getItem('favFilms') || '[]'
 
       state.favourite = JSON.parse(ls)
-    }
+    },
   },
 })
 export default filmsSlice.reducer

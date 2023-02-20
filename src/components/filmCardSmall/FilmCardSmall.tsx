@@ -40,7 +40,7 @@ export function FilmCardSmall({name, year = '', rating = '', img, id}: FilmCardS
 
   return (
     <Link to={`/film/${id}`} className={s.container}>
-      <div className={(favourite.includes(id) ? 'text-amber-600 ' : '') + 'absolute transition-all right-0 px-2 text-white text-3xl hover:text-neutral-300'}
+      <div className={(favourite.includes(id) ? 'text-amber-600 ' : '') + 'absolute transition-all right-0 px-2 text-white text-3xl hover:text-neutral-300 z-10'}
            onClick={e => favouriteHandler(e)}>
         ♥
       </div>

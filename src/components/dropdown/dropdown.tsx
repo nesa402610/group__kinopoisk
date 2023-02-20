@@ -26,17 +26,16 @@ export default function Dropdown() {
   const [input, setInput] = useState(() => searchParams.get('q') ?? '')
   const debounceValue = useDebounce(input, 350)
 
-
   useEffect(() => {
-    setSearchParams({ q: input })
+    console.log(input)
+    if(input === ''){
+      setSearchParams(undefined)
+      
+    }else{
+      setSearchParams({ q: input })
+    }
+    
   }, [input, setSearchParams])
-
-  useEffect(() => {
-    setSearchParams({
-      ...Object.fromEntries(searchParams.entries()),
-      search: input,
-    })
-  }, [input, searchParams, setSearchParams])
 
   const handleDropdownInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearch(e.target.value))
@@ -79,10 +78,6 @@ export default function Dropdown() {
   useEffect(() => {
     dispatch(setSearch((debounceValue)))
   }, [debounceValue, dispatch])
-
-  useEffect(() => {
-    setSearchParams({ q: input })
-  }, [input, setSearchParams])
 
   useEffect(() => {
     if (input) {

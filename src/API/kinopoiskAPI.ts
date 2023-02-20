@@ -48,9 +48,17 @@ export const kinopoiskApi = createApi({
     })),
     getFilmsByIds: builder.query<FilmDetailed[], string[]>({
       async queryFn(ids, _queryApi, _extraOptions, fetchWithBQ) {
-        const filmsQueries = ids.map((id)=>fetchWithBQ(`/v2.2/films/${id}`))
-        const results = await Promise.all(filmsQueries)
-        const films = results.map((result)=>result.data as FilmDetailed)
+        let films:FilmDetailed[] = []
+        try {
+          for(let i = 0; i<ids.length; i+=1){
+          const results = await fetchWithBQ(`/v2.2/films/${ids[i]}`)
+          films.push(results.data as FilmDetailed)
+        }
+        } catch (error) {
+          console.log({error})
+        }
+        
+
         console.log(films)
         return films
           ? { data: films}
