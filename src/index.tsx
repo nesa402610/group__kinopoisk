@@ -51,12 +51,12 @@ const router = createBrowserRouter([
         path: "actor/:ID",
         element: <ActorDetail />,
        },
-      
+
     ]
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
     <RouterProvider router={router}/>
   </Provider>,
